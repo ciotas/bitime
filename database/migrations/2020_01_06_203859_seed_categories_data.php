@@ -17,15 +17,15 @@ class SeedCategoriesData extends Migration
         $categories = [
             [
                 'name'        => '技术',
-                'description' => '我的技术随笔',
+                'description' => '',
             ],
             [
                 'name'        => '随笔',
-                'description' => '其他知识的摘抄或感悟',
+                'description' => '',
             ],
             [
                 'name'        => '人生',
-                'description' => '儒释道',
+                'description' => '',
             ],
         ];
 
