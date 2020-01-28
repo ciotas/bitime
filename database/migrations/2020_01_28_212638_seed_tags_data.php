@@ -17,42 +17,42 @@ class SeedTagsData extends Migration
         $tags = [
             [
                 'tagName' => 'PHP&Laravel',
-                'category_id' => 2,
+                'category_id' => 1,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => 'Vue.js',
-                'category_id' => 2,
+                'category_id' => 1,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => 'Python',
-                'category_id' => 2,
+                'category_id' => 1,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => 'Golang',
-                'category_id' => 2,
+                'category_id' => 1,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '前端',
-                'category_id' => 2,
+                'category_id' => 1,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '管理',
-                'category_id' => 3,
+                'category_id' => 2,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '金融',
-                'category_id' => 3,
+                'category_id' => 2,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '历史',
-                'category_id' => 3,
+                'category_id' => 2,
                 'tag_count' => 0,
             ],
             [
@@ -62,22 +62,22 @@ class SeedTagsData extends Migration
             ],
             [
                 'tagName' => '商业',
-                'category_id' => 3,
+                'category_id' => 2,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '儒家',
-                'category_id' => 4,
+                'category_id' => 3,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '易经',
-                'category_id' => 4,
+                'category_id' => 3,
                 'tag_count' => 0,
             ],
             [
                 'tagName' => '佛学',
-                'category_id' => 4,
+                'category_id' => 3,
                 'tag_count' => 0,
             ],
 
