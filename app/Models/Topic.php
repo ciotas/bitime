@@ -85,4 +85,9 @@ class Topic extends Model
         $this->save();
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

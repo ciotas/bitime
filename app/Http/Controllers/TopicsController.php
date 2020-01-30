@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Link;
+use App\Models\Tag;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,12 +20,11 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-
 	public function index(Request $request, Topic $topic, User $user, Link $link)
 	{
         $topics = $topic->withOrder($request->order)
-            ->with('user', 'category') //// 预加载防止 N+1 问题
-            ->paginate(20);
+            ->with('user', 'category', 'tags') // 预加载防止 N+1 问题
+             ->paginate(20);
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
 		return view('topics.index', compact('topics', 'active_users', 'links'));
@@ -41,15 +41,28 @@ class TopicsController extends Controller
 	public function create(Topic $topic)
 	{
         $categories = Category::all();
-		return view('topics.create_and_edit', compact('topic', 'categories'));
+        $tags = Tag::all();
+        $choose_tags = [];
+		return view('topics.create_and_edit', compact('topic','categories', 'tags', 'choose_tags'));
 	}
 
 	public function store(TopicRequest $request, Topic $topic)
 	{
-	    $topic->fill($request->all()); //fill 方法会将传参的键值数组填充到模型的属性中
+	    $tilte = $request->title;
+	    $category_id = $request->category_id;
+	    $body = $request->body;
+	    $tags = $request->tags;
+
+	    $topic->fill([
+	        'title' => $tilte,
+            'category_id' => $category_id,
+            'body' => $body
+        ]); //fill 方法会将传参的键值数组填充到模型的属性中
 	    $topic->user_id = Auth::id();
 	    $topic->save();
-        return redirect()->to($topic->link())->with('success', '帖子创建成功！！');
+
+        $topic->tags()->attach($tags);
+        return redirect()->to($topic->link())->with('success', '创建成功！！');
 
     }
 
@@ -57,23 +70,36 @@ class TopicsController extends Controller
 	{
         $this->authorize('update', $topic);
         $categories = Category::all();
-		return view('topics.create_and_edit', compact('topic', 'categories'));
+        $tags = Tag::all();
+
+        $choose_tags = $topic->tags()->get()->pluck('id')->toArray();
+		return view('topics.create_and_edit', compact('topic', 'categories', 'tags', 'choose_tags'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
-		$topic->update($request->all());
+        $tilte = $request->title;
+        $category_id = $request->category_id;
+        $body = $request->body;
+        $tags = $request->tags;
 
-		return redirect()->to($topic->link())->with('message', '帖子更新成功～');
+		$topic->update([
+            'title' => $tilte,
+            'category_id' => $category_id,
+            'body' => $body
+        ]);
+
+        $topic->tags()->sync($tags);
+		return redirect()->to($topic->link())->with('message', '更新成功～');
 	}
 
 	public function destroy(Topic $topic)
 	{
 		$this->authorize('destroy', $topic);
 		$topic->delete();
-
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		$topic->tags()->detach();
+		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 
     /**

@@ -1346,16 +1346,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.12.0",
+            "version": "v6.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8e189a8dee7ff76bf50acb7e80aa1a36afaf54d4"
+                "reference": "f0059760814b76fb5f98bb80628607c7560ebe58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8e189a8dee7ff76bf50acb7e80aa1a36afaf54d4",
-                "reference": "8e189a8dee7ff76bf50acb7e80aa1a36afaf54d4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f0059760814b76fb5f98bb80628607c7560ebe58",
+                "reference": "f0059760814b76fb5f98bb80628607c7560ebe58",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1495,20 +1495,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-01-21T15:10:03+00:00"
+            "time": "2020-01-28T21:44:01+00:00"
         },
         {
             "name": "laravel/horizon",
-            "version": "v3.4.7",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "45a76521b4c378eb97bbc86ef59fd6e323f9d8d1"
+                "reference": "6f1e718956b431c721f9eb11a57de65947f06e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/45a76521b4c378eb97bbc86ef59fd6e323f9d8d1",
-                "reference": "45a76521b4c378eb97bbc86ef59fd6e323f9d8d1",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/6f1e718956b431c721f9eb11a57de65947f06e66",
+                "reference": "6f1e718956b431c721f9eb11a57de65947f06e66",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1570,7 +1570,7 @@
                 "laravel",
                 "queue"
             ],
-            "time": "2020-01-14T16:41:11+00:00"
+            "time": "2020-01-28T21:07:02+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -7271,16 +7271,16 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.17.1.1",
+            "version": "v9.18.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "abe5a2f0b21de310c9fccf4daafeb93e597ec7bc"
+                "reference": "0e7860058231b5bc843d1f5ac5c091be6b15b2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/abe5a2f0b21de310c9fccf4daafeb93e597ec7bc",
-                "reference": "abe5a2f0b21de310c9fccf4daafeb93e597ec7bc",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/0e7860058231b5bc843d1f5ac5c091be6b15b2d1",
+                "reference": "0e7860058231b5bc843d1f5ac5c091be6b15b2d1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7341,7 +7341,7 @@
                 "highlight.php",
                 "syntax"
             ],
-            "time": "2020-01-27T08:38:19+00:00"
+            "time": "2020-01-29T15:18:09+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

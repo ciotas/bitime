@@ -25,6 +25,9 @@
               <i class="far fa-folder"></i>
               {{ $topic->category->name }}
             </a>
+            @foreach($topic->tags as $tag)
+              / {{ $tag->name }}
+            @endforeach
 
             <span> • </span>
             <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
