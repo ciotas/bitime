@@ -27,8 +27,7 @@
           <h1 class="mb-0" style="font-size:22px;">{{ $user->name }} <small>{{ $user->email }}</small></h1>
         </div>
       </div>
-      <hr>
-
+      <br>
       {{-- 用户发布的内容 --}}
       <div class="card ">
         <div class="card-body">

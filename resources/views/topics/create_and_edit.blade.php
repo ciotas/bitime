@@ -43,7 +43,6 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="" class=""></label>
                     <select id="select2" class="form-control" name="tags[]" multiple>
                       <option value="" disabled>请选择标签</option>
                       @foreach ($tags as $value)
