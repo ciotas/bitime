@@ -3,10 +3,31 @@
 namespace App\Models;
 
 
+use Laravel\Scout\Searchable;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class Topic extends Model
 {
+    use Searchable;
+
+    /**
+     * 获取模型的索引名称.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'topics_index';
+    }
+
+    /**
+     * 对特定的情况进行搜索
+     */
+    public function shouldBeSearchable()
+    {
+        // return $this->isPublished();
+    }
+
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug', 'top'
     ];

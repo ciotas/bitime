@@ -17,7 +17,7 @@ class TopicsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
 	public function index(Request $request, Topic $topic, User $user, Link $link)
@@ -28,6 +28,19 @@ class TopicsController extends Controller
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
 		return view('topics.index', compact('topics', 'active_users', 'links'));
+	}
+
+    public function search(Request $request, Topic $topic, User $user, Link $link)
+    {
+        $words = trim($request->q);
+        if ($words) {
+            $topics = $topic->search($words)->paginate(20);
+            $active_users = $user->getActiveUsers();
+            $links = $link->getAllCached();
+            return view('topics.search', compact('topics', 'active_users', 'links'))->with('q', $words);
+        } else {
+            return back();
+        }
 	}
 
     public function show(Request $request, Topic $topic)

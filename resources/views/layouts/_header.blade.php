@@ -16,7 +16,18 @@
         <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">随笔</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">人生</a></li>
       </ul>
+      <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('topics.search') }}" accept-charset="UTF-8">
+        <div class="input-group">
+          <input class="form-control border-right-0" type="search" name="q" value="{{ isset($q) ? $q : '' }}" placeholder="Search" aria-label="Search" required>
+          <span class="input-group-append bg-white border-left-0">
+            <span class="input-group-text bg-transparent">
+              <i class="fas fa-search"></i>
+            </span>
+        </span>
+        </div>
+      </form>
 
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <!-- Right Side Of Navbar -->
       <ul class="navbar-nav navbar-right">
         <!-- Authentication Links -->

@@ -38,6 +38,7 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('topics/search', 'TopicsController@search')->name('topics.search');
 
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
