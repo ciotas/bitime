@@ -35,6 +35,17 @@ return [
                 return model_admin_link($model->category->name, $model->category);
             },
         ],
+        'tag' => [
+            'title'    => '标签',
+            'sortable' => false,
+            'output'   => function ($value, $model) {
+                $result = [];
+                foreach ($model->tags as $tag) {
+                    $result[] = $tag->name;
+                }
+                return empty($result) ? 'N/A' : implode(' | ', $result);
+            },
+        ],
         'reply_count' => [
             'title'    => '评论',
         ],
@@ -68,6 +79,14 @@ return [
             'name_field'         => 'name',
             'search_fields'      => ["CONCAT(id, ' ', name)"],
             'options_sort_field' => 'id',
+        ],
+        'tags' => [
+            'title'    => '标签',
+            'type' => 'relationship',
+            'name_field'         => 'name',
+            'autocomplete' => true,
+            'num_options' => 5,
+            'search_fields'      => ["CONCAT(id, ' ', name)"],
         ],
         'reply_count' => [
             'title'    => '评论',
