@@ -52,10 +52,25 @@
                   </div>
 
                   <div class="form-group">
+                    <select class="form-control" name="top" required>
+                      <option value="" disabled>顶置</option>
+                        <option value="1" {{ $topic->top == 1 ? 'selected' : '' }}>是</option>
+                        <option value="0" {{ $topic->top == 0 ? 'selected' : '' }}>否</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
                     <textarea name="body" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body ) }}</textarea>
                   </div>
 
                   <div class="well well-sm">
+                    @if($topic->id)
+                    <a href="{{ route('topics.show', ['topic'=>$topic->id]) }}" class="btn btn-secondary">
+                      <i class="fas fa-chevron-left"></i> 返回</a>
+                    @else
+                      <a href="{{ route('topics.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-chevron-left"></i> 返回</a>
+                    @endif
                     <button type="submit" class="btn btn-primary"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
                   </div>
                 </form>

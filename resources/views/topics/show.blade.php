@@ -34,6 +34,9 @@
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
       <div class="card">
         <div class="card-body">
+          @if($topic->top)
+            <span class="badge badge-primary">顶置</span>
+          @endif
           <h1 class="text-center mt-3 mb-3">
             {{ $topic->title }}
           </h1>

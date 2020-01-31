@@ -11,6 +11,9 @@
         <div class="media-body">
 
           <div class="media-heading mt-0 mb-1">
+            @if($topic->top)
+              <span class="badge badge-primary">顶置</span>
+            @endif
             <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
               {{ $topic->title }}
             </a>
