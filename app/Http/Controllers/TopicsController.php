@@ -46,7 +46,7 @@ class TopicsController extends Controller
 		return view('topics.create_and_edit', compact('topic','categories', 'tags', 'choose_tags'));
 	}
 
-	public function store(TopicRequest $request, Topic $topic)
+	public function store(TopicRequest $request, Topic $topic, Tag $tag)
 	{
 	    $tilte = $request->title;
 	    $category_id = $request->category_id;
@@ -62,6 +62,7 @@ class TopicsController extends Controller
 	    $topic->save();
 
         $topic->tags()->attach($tags);
+        $tag->updateTopicscount($tags);
         return redirect()->to($topic->link())->with('success', '创建成功！！');
 
     }
@@ -76,7 +77,7 @@ class TopicsController extends Controller
 		return view('topics.create_and_edit', compact('topic', 'categories', 'tags', 'choose_tags'));
 	}
 
-	public function update(TopicRequest $request, Topic $topic)
+	public function update(TopicRequest $request, Topic $topic, Tag $tag)
 	{
 		$this->authorize('update', $topic);
         $tilte = $request->title;
@@ -84,21 +85,39 @@ class TopicsController extends Controller
         $body = $request->body;
         $tags = $request->tags;
 
+        $oldTags = $this->getOldTags($topic);
+
 		$topic->update([
             'title' => $tilte,
             'category_id' => $category_id,
             'body' => $body
         ]);
-
         $topic->tags()->sync($tags);
+
+        $mergeTags = array_unique(array_merge($oldTags, $tags));
+        $tag->updateTopicscount($mergeTags);
+
 		return redirect()->to($topic->link())->with('message', '更新成功～');
 	}
 
-	public function destroy(Topic $topic)
+	protected function getOldTags($topic)
+    {
+        $oldTags = $topic->tags()->get();
+        $arr = [];
+        foreach ($oldTags as $oldTag)
+        {
+            $arr[] = $oldTag->pivot->tag_id;
+        }
+        return $arr;
+    }
+
+	public function destroy(Topic $topic, Tag $tag)
 	{
 		$this->authorize('destroy', $topic);
+		$tags = $this->getOldTags($topic);
 		$topic->delete();
 		$topic->tags()->detach();
+        $tag->updateTopicscount($tags);
 		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 

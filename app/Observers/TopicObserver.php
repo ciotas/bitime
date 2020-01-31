@@ -4,7 +4,9 @@ namespace App\Observers;
 
 use App\Handlers\SlugTranslateHandler;
 use App\Jobs\TranslateSlug;
+use App\Models\Tag;
 use App\Models\Topic;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 // creating, created, updating, updated, saving,
@@ -20,6 +22,7 @@ class TopicObserver
         $topic->body = clean($topic->body, 'user_topic_body');
         // 生成话题摘录
         $topic->excerpt = make_excerpt($topic->body);
+
     }
 
     public function saved(Topic $topic)

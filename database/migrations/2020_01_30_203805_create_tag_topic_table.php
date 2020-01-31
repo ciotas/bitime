@@ -17,7 +17,6 @@ class CreateTagTopicTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('topic_id')->unsigned()->index();
             $table->bigInteger('tag_id')->unsigned()->index();
-            $table->timestamps();
         });
     }
 
