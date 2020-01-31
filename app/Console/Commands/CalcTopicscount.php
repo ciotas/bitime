@@ -43,7 +43,7 @@ class CalcTopicscount extends Command
         foreach ($tags as $tag)
         {
             $topics_count = Taggable::where('tag_id', $tag->id)->count();
-            Tag::where('id', $tag->id)->update(['topics_count', $topics_count]);
+            Tag::where('id', $tag->id)->update(['topics_count' => $topics_count]);
         }
     }
 }
