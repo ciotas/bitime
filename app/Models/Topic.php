@@ -19,15 +19,7 @@ class Topic extends Model
     {
         return 'topics_index';
     }
-
-    /**
-     * 对特定的情况进行搜索
-     */
-    public function shouldBeSearchable()
-    {
-        // return $this->isPublished();
-    }
-
+    
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug', 'top'
     ];
