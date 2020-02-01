@@ -60,7 +60,7 @@
                   </div>
 
                   <div class="form-group">
-                    <textarea name="body" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body ) }}</textarea>
+                    <textarea name="body" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body) }}</textarea>
                   </div>
 
                   <div class="well well-sm">
@@ -93,7 +93,7 @@
   <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
   <script type="text/javascript" src="{{ asset('js/simditor-livemd.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/simditor-autosave.js') }}"></script>
+{{--  <script type="text/javascript" src="{{ asset('js/simditor-autosave.js') }}"></script>--}}
 
   <script>
     $(document).ready(function() {
@@ -105,7 +105,7 @@
       var editor = new Simditor({
         textarea: $('#editor'),
         toolbar: toolbar,
-        autosave: 'editor-content',
+        // autosave: 'editor-content',
         livemd: true,
         upload: {
           url: '{{ route('topics.upload_image') }}',
