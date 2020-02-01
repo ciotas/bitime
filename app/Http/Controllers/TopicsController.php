@@ -98,7 +98,6 @@ class TopicsController extends Controller
         $category_id = $request->category_id;
         $top = $request->top;
         $body = $request->body;
-//        dd($body);
         $tags = $request->tags;
 
 		$topic->update([
