@@ -84,7 +84,6 @@
 @section('styles')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-
 @stop
 
 @section('scripts')
@@ -93,12 +92,21 @@
   <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/simditor-livemd.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/simditor-autosave.js') }}"></script>
 
   <script>
     $(document).ready(function() {
       $('#select2').select2();
+      var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
+        'color', '|', 'ol', 'ul', 'blockquote', 'code', '|',
+        'link', 'image', 'hr', '|', 'indent', 'outdent'];
+
       var editor = new Simditor({
         textarea: $('#editor'),
+        toolbar: toolbar,
+        autosave: 'editor-content',
+        livemd: true,
         upload: {
           url: '{{ route('topics.upload_image') }}',
           params: {
