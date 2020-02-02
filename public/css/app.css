@@ -17415,7 +17415,6 @@ body {
 .simditor-body,
 .topic-body {
   font-size: 16px;
-  line-height: 1.3;
   overflow: hidden;
   word-wrap: break-word;
 }
@@ -17464,17 +17463,9 @@ body {
   height: 0;
 }
 
-.simditor-body table,
-.topic-body table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-.simditor-body td,
-.simditor-body th,
-.topic-body td,
-.topic-body th {
-  padding: 0;
+.simditor-body blockquote,
+.topic-body blockquote {
+  margin: 0;
 }
 
 .simditor-body *,
@@ -17519,11 +17510,6 @@ body {
   clear: both;
 }
 
-.simditor-body blockquote,
-.topic-body blockquote {
-  margin: 0;
-}
-
 .simditor-body ul,
 .simditor-body ol,
 .topic-body ul,
@@ -17536,36 +17522,6 @@ body {
 .simditor-body ol ol,
 .topic-body ol ol {
   list-style-type: lower-roman;
-}
-
-.simditor-body dd,
-.topic-body dd {
-  margin-left: 0;
-}
-
-.simditor-body code,
-.simditor-body pre,
-.topic-body code,
-.topic-body pre {
-  font-family: monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 1em;
-}
-
-.simditor-body pre,
-.topic-body pre {
-  margin-top: 0;
-  margin-bottom: 0;
-  overflow: auto;
-}
-
-.simditor-body .topic-body > *:first-child,
-.topic-body .topic-body > *:first-child {
-  margin-top: 0 !important;
-}
-
-.simditor-body .topic-body > *:last-child,
-.topic-body .topic-body > *:last-child {
-  margin-bottom: 0 !important;
 }
 
 .simditor-body .anchor,
@@ -17641,25 +17597,6 @@ body {
   color: #777;
 }
 
-.simditor-body p,
-.simditor-body blockquote,
-.simditor-body ul,
-.simditor-body ol,
-.simditor-body dl,
-.simditor-body table,
-.simditor-body pre,
-.topic-body p,
-.topic-body blockquote,
-.topic-body ul,
-.topic-body ol,
-.topic-body dl,
-.topic-body table,
-.topic-body pre {
-  margin-top: 0;
-  margin-bottom: 0px;
-  line-height: 30px;
-}
-
 .simditor-body hr,
 .topic-body hr {
   border: 2px dashed #F0F4F6;
@@ -17695,80 +17632,6 @@ body {
   padding: 0;
 }
 
-.simditor-body dl dt,
-.topic-body dl dt {
-  padding: 0;
-  margin-top: 6px;
-  font-size: 1em;
-  font-style: italic;
-  font-weight: bold;
-}
-
-.simditor-body dl dd,
-.topic-body dl dd {
-  padding: 0 16px;
-  margin-bottom: 16px;
-}
-
-.simditor-body blockquote,
-.topic-body blockquote {
-  font-size: inherit;
-  padding: 15px !important;
-  color: #777;
-  border-left: 4px solid #ddd;
-}
-
-.simditor-body blockquote > :first-child,
-.topic-body blockquote > :first-child {
-  margin-top: 0px;
-}
-
-.simditor-body blockquote > :last-child,
-.topic-body blockquote > :last-child {
-  margin-bottom: 0px;
-}
-
-.simditor-body blockquote,
-.topic-body blockquote {
-  margin: 20px 0 !important;
-  background-color: #f5f8fc;
-  padding: 0rem;
-  color: #8796A8;
-  border-left: none;
-}
-
-.simditor-body table,
-.topic-body table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  margin: 25px 0;
-}
-
-.simditor-body table th,
-.topic-body table th {
-  font-weight: bold;
-}
-
-.simditor-body table th,
-.simditor-body table td,
-.topic-body table th,
-.topic-body table td {
-  padding: 6px 13px;
-  border: 1px solid #ddd;
-}
-
-.simditor-body table tr,
-.topic-body table tr {
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-}
-
-.simditor-body table tr:nth-child(2n),
-.topic-body table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
 .simditor-body img,
 .topic-body img {
   max-width: 100%;
@@ -17785,36 +17648,29 @@ body {
   margin-top: 10px;
 }
 
-.simditor-body code,
-.topic-body code {
-  background: rgba(90, 87, 87, 0);
-  margin: 5px;
-  color: #858080;
-  border-radius: 4px;
-  background-color: #f9fafa;
-  border: 1px solid #e4e4e4;
-  max-width: 740px;
-  overflow-x: auto;
-  font-size: 0.9em;
-  padding: 1px 2px 1px;
+.simditor-body blockquote,
+.topic-body blockquote {
+  font-size: inherit;
+  padding: 15px 0 15px 10px !important;
+  color: #777;
 }
 
-.simditor-body code:before,
-.simditor-body code:after,
-.topic-body code:before,
-.topic-body code:after {
-  letter-spacing: -0.2em;
-  content: "\A0";
+.simditor-body blockquote > :first-child,
+.topic-body blockquote > :first-child {
+  margin-top: 0px;
 }
 
-.simditor-body pre > code,
-.topic-body pre > code {
-  padding: 0;
-  margin: 0;
-  font-size: 100%;
-  white-space: pre;
-  background: transparent;
-  border: 0;
+.simditor-body blockquote > :last-child,
+.topic-body blockquote > :last-child {
+  margin-bottom: 0px;
+}
+
+.simditor-body blockquote,
+.topic-body blockquote {
+  background-color: #f5f8fc;
+  padding: 0rem;
+  color: #8796A8;
+  border-left: none;
 }
 
 .simditor-body .highlight,
@@ -17826,7 +17682,6 @@ body {
 .simditor-body pre,
 .topic-body .highlight pre,
 .topic-body pre {
-  margin-bottom: 8px;
   padding: 14px;
   overflow: auto;
   line-height: 1.45;
@@ -17834,35 +17689,6 @@ body {
   border-radius: 3px;
   color: inherit;
   border: none;
-}
-
-.simditor-body .highlight pre,
-.topic-body .highlight pre {
-  margin-bottom: 0px;
-}
-
-.simditor-body pre,
-.topic-body pre {
-  word-wrap: normal;
-}
-
-.simditor-body pre code,
-.topic-body pre code {
-  display: block;
-  padding: 0px;
-  margin: 0px;
-  overflow: initial;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0;
-}
-
-.simditor-body pre code:before,
-.simditor-body pre code:after,
-.topic-body pre code:before,
-.topic-body pre code:after {
-  content: normal;
 }
 
 .topics-show-page .card {
