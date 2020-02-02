@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-
 use Laravel\Scout\Searchable;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class Topic extends Model
 {
@@ -19,7 +17,24 @@ class Topic extends Model
     {
         return 'topics_index';
     }
-    
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array['category'] = $this->category->name;
+        return $array;
+    }
+
+    /**
+     * @param $value
+     * @return array
+     * large records split store
+     */
+    public function splitBody($value)
+    {
+        return explode('。', strip_tags($value));
+    }
+
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug', 'top'
     ];
