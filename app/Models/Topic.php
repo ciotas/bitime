@@ -22,7 +22,7 @@ class Topic extends Model
     {
         $array = $this->toArray();
         $array['category'] = $this->category->name;
-        $array['body'] = strip_tags($this->body);
+        $array['body'] = strigTags($this->body);
         return $array;
     }
 
@@ -33,7 +33,7 @@ class Topic extends Model
      */
     public function splitBody($value)
     {
-        return explode('。', strip_tags($value));
+        return explode('。', strigTags($value));
     }
 
     protected $fillable = [

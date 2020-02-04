@@ -10,8 +10,12 @@ function category_nav_active($category_id) {
 }
 
 function make_excerpt($value, $length = 200) {
-    $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
+    $excerpt = strigTags($value);
     return Str::limit($excerpt, $length);
+}
+
+function strigTags($value) {
+    return trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
 }
 
 function model_admin_link($title, $model) {
