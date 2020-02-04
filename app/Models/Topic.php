@@ -22,6 +22,7 @@ class Topic extends Model
     {
         $array = $this->toArray();
         $array['category'] = $this->category->name;
+        $array['body'] = strip_tags($this->body);
         return $array;
     }
 
