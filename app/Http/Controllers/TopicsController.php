@@ -32,14 +32,14 @@ class TopicsController extends Controller
 
     public function search(Request $request, Topic $topic, User $user, Link $link)
     {
-        $words = trim($request->q);
+        $words = trim(request('q'));
         if ($words) {
             $topics = $topic->search($words)->paginate(20);
             $active_users = $user->getActiveUsers();
             $links = $link->getAllCached();
             return view('topics.search', compact('topics', 'active_users', 'links'))->with('q', $words);
         } else {
-            return back();
+            return redirect()->route('topics.index');
         }
 	}
 

@@ -26,16 +26,6 @@ class Topic extends Model
         return $array;
     }
 
-    /**
-     * @param $value
-     * @return array
-     * large records split store
-     */
-    public function splitBody($value)
-    {
-        return explode('。', strigTags($value));
-    }
-
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug', 'top'
     ];

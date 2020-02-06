@@ -18,7 +18,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('topics.search') }}" accept-charset="UTF-8">
         <div class="input-group">
-          <input class="form-control border-right-0" type="search" name="q" value="{{ isset($q) ? $q : '' }}" placeholder="Search" aria-label="Search" required>
+          <input class="form-control border-right-0" type="search" name="q" value="{{ request('q') }}" placeholder="Search" aria-label="Search">
           <span class="input-group-append bg-white border-left-0">
             <span class="input-group-text bg-transparent">
               <i class="fas fa-search"></i>
