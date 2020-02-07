@@ -3,8 +3,8 @@
 use App\Models\Topic;
 
 return [
-    'title'   => '话题',
-    'single'  => '话题',
+    'title'   => '文章',
+    'single'  => '文章',
     'model'   => Topic::class,
 
     'columns' => [
@@ -45,6 +45,13 @@ return [
                 }
                 return empty($result) ? 'N/A' : implode(' | ', $result);
             },
+        ],
+        'top' => [
+            'title'    => '顶置',
+            'sortable' => false,
+            'output' => function ($value, $model) {
+                return $model->top ? '顶置' : '/';
+            }
         ],
         'reply_count' => [
             'title'    => '评论',
@@ -87,6 +94,9 @@ return [
             'autocomplete' => true,
             'num_options' => 5,
             'search_fields'      => ["CONCAT(id, ' ', name)"],
+        ],
+        'top' => [
+            'title'    => '顶置',
         ],
         'reply_count' => [
             'title'    => '评论',
