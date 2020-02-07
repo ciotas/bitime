@@ -15,7 +15,7 @@ class Topic extends Model
      */
     public function searchableAs()
     {
-        return 'topic';
+        return 'topics_index';
     }
 
     public function toSearchableArray()
