@@ -11,18 +11,8 @@
     <div class="card-body active-users pt-2">
       <div class="text-center mt-1 mb-0 text-muted">标签</div>
       <hr class="mt-2">
-      <ul class="list-group">
-{{--        <li class="list-group-item disabled text-center" aria-disabled="true">标签</li>--}}
       @foreach ($tags as $value)
         @if($value->topics_count > 0)
-{{--            <li class="list-group-item d-flex justify-content-between align-items-center {{  == $tag->id }}">--}}
-{{--              <a class="media mt-2" href="{{ route('tags.show', $tag->id) }}">--}}
-{{--                <span class="media-heading">{{ $tag->name }}</span>--}}
-{{--              </a>--}}
-{{--              <span class="badge badge-light badge-pill">{{ $tag->topics_count }}</span>--}}
-{{--            </li>--}}
-
-
         <a class="media mt-2" href="{{ route('tags.show', $value->id) }}">
           <div class="media-body">
             <small class="media-heading {{ $tag->id == $value->id ?: 'text-secondary' }} active">{{ $value->name }}</small>
@@ -31,7 +21,6 @@
         </a>
         @endif
       @endforeach
-      </ul>
     </div>
   </div>
 @endif
