@@ -79,7 +79,7 @@
           <hr>
           <div class="text-left">
             @foreach($topic->tags as $tag)
-              <span class="badge badge-secondary">{{ $tag->name }}</span>
+              <span class="badge badge-light">{{ $tag->name }}</span>
             @endforeach
           </div>
         </div>
