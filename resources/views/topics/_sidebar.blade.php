@@ -15,7 +15,7 @@
         @if($value->topics_count > 0)
         <a class="media mt-2" href="{{ route('tags.show', $value->id) }}">
           <div class="media-body">
-            <small class="media-heading {{ $tag->id == $value->id ?: 'text-secondary' }} active">{{ $value->name }}</small>
+            <small class="media-heading {{ isset($tag) && $tag->id == $value->id ?: 'text-secondary' }} active">{{ $value->name }}</small>
           </div>
           <span class="badge badge-light badge-pill">{{ $value->topics_count }}</span>
         </a>
