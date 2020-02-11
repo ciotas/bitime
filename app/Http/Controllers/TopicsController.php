@@ -25,9 +25,10 @@ class TopicsController extends Controller
         $topics = $topic->withOrder($request->order)
             ->with('user', 'category', 'tags') // 预加载防止 N+1 问题
              ->paginate(20);
-        $active_users = $user->getActiveUsers();
+//        $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
-		return view('topics.index', compact('topics', 'active_users', 'links'));
+        $tags = Tag::withOrder()->get();
+		return view('topics.index', compact('topics', 'links', 'tags'));
 	}
 
     public function search(Request $request, Topic $topic, User $user, Link $link)
@@ -35,9 +36,10 @@ class TopicsController extends Controller
         $words = trim(request('q'));
         if ($words) {
             $topics = $topic->search($words)->paginate(20);
-            $active_users = $user->getActiveUsers();
+//            $active_users = $user->getActiveUsers();
             $links = $link->getAllCached();
-            return view('topics.search', compact('topics', 'active_users', 'links'))->with('q', $words);
+            $tags = Tag::withOrder()->get();
+            return view('topics.search', compact('topics', 'links', 'tags'))->with('q', $words);
         } else {
             return redirect()->route('topics.index');
         }

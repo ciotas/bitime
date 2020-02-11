@@ -14,4 +14,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Topic::class);
     }
+
+    public function scopeWithOrder($query)
+    {
+        return $query->orderBy('topics_count', 'desc');
+    }
 }
