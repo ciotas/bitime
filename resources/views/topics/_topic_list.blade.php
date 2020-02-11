@@ -17,9 +17,9 @@
             <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
               {{ $topic->title }}
             </a>
-            <a class="float-right" href="{{ $topic->link() }}">
-              <span class="badge badge-secondary badge-pill"> {{ $topic->reply_count }} </span>
-            </a>
+{{--            <a class="float-right" href="{{ $topic->link() }}">--}}
+{{--              <span class="badge badge-secondary badge-pill"> {{ $topic->reply_count }} </span>--}}
+{{--            </a>--}}
           </div>
 
           <small class="media-body meta text-secondary">
@@ -28,8 +28,11 @@
               <i class="far fa-folder"></i>
               {{ $topic->category->name }}
             </a>
-            @foreach($topic->tags as $tag)
-              / {{ $tag->name }}
+            @foreach($topic->tags as $key => $tag)
+              <span>
+              @if ($key > 0) / @else • @endif
+                </span>
+               <a class="text-secondary" href="{{ route('tags.show', $tag->id) }}"> {{ $tag->name }}</a>
             @endforeach
 
 {{--            <span> • </span>--}}
@@ -39,7 +42,7 @@
 {{--            </a>--}}
             <span> • </span>
             <i class="far fa-clock"></i>
-            <span class="timeago" title="最后活跃于：{{ $topic->updated_at }}">{{ $topic->updated_at->diffForHumans() }}</span>
+            <span title="最后活跃于：{{ $topic->updated_at }}">{{ $topic->updated_at->diffForHumans() }}</span>
           </small>
 
         </div>

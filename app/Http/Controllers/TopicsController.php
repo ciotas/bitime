@@ -36,7 +36,6 @@ class TopicsController extends Controller
         $words = trim(request('q'));
         if ($words) {
             $topics = $topic->search($words)->paginate(20);
-//            $active_users = $user->getActiveUsers();
             $links = $link->getAllCached();
             $tags = Tag::withOrder()->get();
             return view('topics.search', compact('topics', 'links', 'tags'))->with('q', $words);
