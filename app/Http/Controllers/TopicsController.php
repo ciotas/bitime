@@ -62,7 +62,6 @@ class TopicsController extends Controller
 
 	public function store(TopicRequest $request, Topic $topic, Tag $tag)
 	{
-	    dd($request->all());
 	    $tilte = $request->title;
 	    $category_id = $request->category_id;
 	    $top = $request->top;
