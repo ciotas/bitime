@@ -24,7 +24,7 @@ return [
     'settings'      => [
         'user_topic_body' => [
             'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src],code,pre,blockquote,strike,table,thead,tbody,tr,td,th,h1,h2,h3,h4,h5,h6,colgroup,col,mark',
+            'HTML.Allowed'             => 'div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src],code,pre[class],blockquote,strike,table[class],thead,tbody,tr,td,th,h1,h2,h3,h4,h5,h6,colgroup,col',
             'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,margin-left',
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,

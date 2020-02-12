@@ -10,14 +10,12 @@
           <h2 class="">
             <i class="far fa-edit"></i>
             @if($topic->id)
-              编辑话题
+              编辑文章
             @else
-              新建话题
+              新建文章
             @endif
           </h2>
-
           <hr>
-
           @if($topic->id)
             <form action="{{ route('topics.update', $topic->id) }}" method="POST" accept-charset="UTF-8">
               <input type="hidden" name="_method" value="PUT">
@@ -60,7 +58,11 @@
                   </div>
 
                   <div class="form-group">
-                    <textarea name="body" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body) }}</textarea>
+                    <div id="div1" class="wangeditor-body">
+                      {!! old('body', $topic->body) !!}
+                    </div>
+                    <textarea name="body" id="editor" style="width:100%; height:200px; display: block">
+                    </textarea>
                   </div>
 
                   <div class="well well-sm">
@@ -82,42 +84,78 @@
 @endsection
 
 @section('styles')
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 @stop
 
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-  <script type="text/javascript" src="{{ asset('js/simditor-livemd.js') }}"></script>
-{{--  <script type="text/javascript" src="{{ asset('js/simditor-autosave.js') }}"></script>--}}
-
   <script>
+    var editor = new E('#div1')
+    var $text1 = $('#editor')
+    editor.customConfig.onchange = function (html) {
+      // 代码块
+      var doc_pre = $("#div1 pre");
+      doc_pre.each(function(){
+        var lan_class = 'language-markup';
+        if (! $(this).hasClass(lan_class))
+        {
+          $(this).attr("class",lan_class);
+        }
+      });
+
+      // 个性化table
+      var doc_table = $("#div1 table");
+      doc_table.each(function () {
+        var table_class = 'table table-bordered'
+        if (! $(this).hasClass(table_class))
+        {
+          $(this).attr("class",table_class);
+        }
+      });
+
+      // 监控变化，同步更新到 textarea
+      var html = editor.txt.html()
+      $text1.val(html)
+    }
+    editor.customConfig.zIndex = 1
+    editor.customConfig.uploadImgServer = '{{ route('topics.upload_image') }}'
+    // 默认限制图片大小是 5M
+    editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024
+    // 默认为 10000 张（即不限制），需要限制可自己配置
+    editor.customConfig.uploadImgMaxLength = 1
+    editor.customConfig.uploadFileName = 'upload_file'
+    editor.customConfig.uploadImgParams = {
+      _token: '{{ csrf_token() }}'
+    }
+
+    editor.customConfig.menus = [
+      'head',  // 标题
+      'bold',  // 粗体
+      'fontSize',  // 字号
+      'fontName',  // 字体
+      // 'italic',  // 斜体
+      // 'underline',  // 下划线
+      // 'strikeThrough',  // 删除线
+      'foreColor',  // 文字颜色
+      // 'backColor',  // 背景颜色
+      'link',  // 插入链接
+      'list',  // 列表
+      'justify',  // 对齐方式
+      'quote',  // 引用
+      'code',  // 插入代码
+      'emoticon',  // 表情
+      'image',  // 插入图片
+      'table',  // 表格
+      // 'video',  // 插入视频
+      // 'undo',  // 撤销
+      // 'redo'  // 重复
+    ]
+    editor.create()
+    // 初始化 textarea 的值
+    $text1.val(editor.txt.html())
+
     $(document).ready(function() {
       $('#select2').select2();
-      var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough',
-        'color', '|', 'ol', 'ul', 'blockquote', 'code', '|',
-        'link', 'image', 'hr', '|', 'indent', 'outdent'];
-
-      var editor = new Simditor({
-        textarea: $('#editor'),
-        toolbar: toolbar,
-        // autosave: 'editor-content',
-        livemd: true,
-        upload: {
-          url: '{{ route('topics.upload_image') }}',
-          params: {
-            _token: '{{ csrf_token() }}'
-          },
-          fileKey: 'upload_file',
-          connectionCount: 3,
-          leaveConfirm: '文件上传中，关闭此页面将取消上传。'
-        },
-        pasteImage: true,
-      });
     });
   </script>
 @stop

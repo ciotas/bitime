@@ -71,7 +71,6 @@
               </form>
             </div>
           @endcan
-
         </div>
       </div>
 
@@ -87,3 +86,11 @@
     </div>
   </div>
 @stop
+
+@section('styles')
+  <link rel="stylesheet" href="{{ asset('css/prism.css') }}">
+@endsection
+
+@section('scripts')
+  <script src="{{ asset('js/prism.js') }}"></script>
+  @endsection
