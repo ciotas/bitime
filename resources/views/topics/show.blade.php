@@ -7,6 +7,30 @@
 
   <div class="row">
 
+    <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <a class="text-secondary" href="{{ route('users.show', $topic->user->id) }}">{{ $topic->user->name }}</a>
+          </div>
+          <hr>
+          <div class="media">
+            <div align="center">
+              <a href="{{ route('users.show', $topic->user->id) }}">
+                <img class="thumbnail img-fluid" src="{{ $topic->user->avatar }}" width="300px" height="300px">
+              </a>
+            </div>
+          </div>
+          <hr>
+          <div class="text-left">
+            @foreach($topic->tags as $tag)
+              <span class="badge badge-light">{{ $tag->name }}</span>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content m-auto">
       <div class="card">
         <div class="card-body">
@@ -61,30 +85,5 @@
       </div>
       @endif
     </div>
-
-    <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
-      <div class="card">
-        <div class="card-body">
-          <div class="text-center">
-            <a class="text-secondary" href="{{ route('users.show', $topic->user->id) }}">{{ $topic->user->name }}</a>
-          </div>
-          <hr>
-          <div class="media">
-            <div align="center">
-              <a href="{{ route('users.show', $topic->user->id) }}">
-                <img class="thumbnail img-fluid" src="{{ $topic->user->avatar }}" width="300px" height="300px">
-              </a>
-            </div>
-          </div>
-          <hr>
-          <div class="text-left">
-            @foreach($topic->tags as $tag)
-              <span class="badge badge-light">{{ $tag->name }}</span>
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 @stop
