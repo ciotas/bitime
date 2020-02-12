@@ -61,7 +61,7 @@
                     <div id="div1" class="wangeditor-body">
                       {!! old('body', $topic->body) !!}
                     </div>
-                    <textarea name="body" id="editor" style="width:100%; height:200px; display: block">
+                    <textarea name="body" id="editor" style="width:100%; height:200px; display: none">
                     </textarea>
                   </div>
 
