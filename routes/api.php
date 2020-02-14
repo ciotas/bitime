@@ -30,6 +30,9 @@ Route::prefix('v1')
                 // 登录
                 Route::post('authorizations', 'AuthorizationsController@store')
                     ->name('api.authorizations.store');
+                // 微信登陆
+                Route::post('weapp/authorizations', 'AuthorizationsController@weappStore')
+                    ->name('api.weapp.authorizations.store');
 
                 // 刷新token
                 Route::put('authorizations/current', 'AuthorizationsController@update')
