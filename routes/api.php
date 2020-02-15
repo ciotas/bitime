@@ -30,17 +30,20 @@ Route::prefix('v1')
                 // 登录
                 Route::post('authorizations', 'AuthorizationsController@store')
                     ->name('api.authorizations.store');
-                // 微信登陆
+                // 小程序登陆
                 Route::post('weapp/authorizations', 'AuthorizationsController@weappStore')
                     ->name('api.weapp.authorizations.store');
-
+                // 小程序注册
+                Route::post('weapp/users', 'UsersController@weappStore')
+                    ->name('api.weapp.users.store');
                 // 刷新token
                 Route::put('authorizations/current', 'AuthorizationsController@update')
                     ->name('authorizations.update');
                 // 删除token
                 Route::delete('authorizations/current', 'AuthorizationsController@destroy')
                     ->name('authorizations.destroy');
-
+                Route::get('users/{user}', 'UsersController@show')
+                    ->name('api.users.show');
                 // 第三方登陆
                 Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
                     ->where('social_type', 'weixin') // ->where('social_type', 'weixin|weibo')
@@ -98,6 +101,8 @@ Route::prefix('v1')
                     // 编辑登录用户信息
                     Route::patch('user', 'UsersController@update')
                         ->name('user.update');
+                    Route::match(['PATCH', 'PUT'], 'user', 'UsersController@update');
+
                     Route::resource('topics', 'TopicsController')->only(['store', 'update', 'destroy']);
                     // 发布回复
                     Route::post('topics/{topic}/replies', 'RepliesController@store')

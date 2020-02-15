@@ -37,7 +37,12 @@ class TopicsController extends Controller
 
     public function index(Request $request, TopicQuery $query)
     {
-        $topics = $query->paginate();
+        if (isset($request->category_id) && $request->category_id > 0)
+        {
+            $topics = $query->where('category_id', $request->category_id)->paginate();
+        } else {
+            $topics = $query->paginate();
+        }
         return TopicResource::collection($topics);
     }
 
