@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Queries;
 
+use App\Http\Resources\ReplyResource;
+use App\Http\Resources\TopicResource;
 use App\Models\Topic;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -10,11 +12,16 @@ class TopicQuery extends QueryBuilder
     public function __construct()
     {
         parent::__construct(Topic::query());
-        $this->allowedIncludes('user', 'category', 'user.roles')
+        $this->allowedIncludes('user', 'category', 'user.roles', 'topReplies.user')
             ->allowedFilters([
                 'title',
                 AllowedFilter::exact('category_id'),
                 AllowedFilter::scope('withOrder')->default('recentReplied'),
             ]);
+    }
+
+    public function includeTopReplies(Topic $topic)
+    {
+        return ReplyResource::collection($topic->topReplies());
     }
 }

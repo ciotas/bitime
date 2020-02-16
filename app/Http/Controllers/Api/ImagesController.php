@@ -20,7 +20,6 @@ class ImagesController extends Controller
         $image->path = $result['path'];
         $image->type = $request->type;
         $image->user_id = $user->id;
-
         $image->save();
 
         return new ImageResource($image);

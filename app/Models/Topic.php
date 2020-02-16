@@ -109,4 +109,8 @@ class Topic extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function topReplies()
+    {
+        return $this->replies()->limit(5);
+    }
 }
