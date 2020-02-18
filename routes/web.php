@@ -51,3 +51,10 @@ Route::resource('tags', 'TagsController', ['only' => ['show']]);
 
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+Route::get('/users/{user_id}/plans', 'PlansController@index')->name('plans.index');
+
+Route::resource('plans', 'PlansController', ['only' => ['index', 'create', 'store', 'update', 'destroy']]);
+Route::get('plans/search', 'PlansController@search')->name('plans.search');
+
+

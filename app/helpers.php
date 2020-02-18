@@ -50,3 +50,11 @@ function model_plural_name($model)
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
     return Str::plural($snake_case_name);
 }
+
+function _getFloatLength($floatNum) {
+    $length = strlen($floatNum);
+
+    $pos = strpos($floatNum, ".");//zero-based counting.
+
+    return !$pos ? 0 : ($length - $pos) - 1;
+}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\ActiveUserHelper;
 use App\Models\Traits\LastActivedAtHelper;
+use App\Plan;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -138,5 +139,10 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     {
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return "http://www.gravatar.com/avatar/$hash?s=$size";
+    }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
     }
 }

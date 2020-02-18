@@ -15,10 +15,16 @@
         <li class="nav-item {{ category_nav_active(1) }}"><a class="nav-link" href="{{ route('categories.show', 1) }}">技术</a></li>
         <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">随笔</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">人生</a></li>
+        @auth
+          @if(Auth::id() == 1)
+            <li class="nav-item {{ active_class(if_route('plans.index')) }}"><a class="nav-link" href="{{ route('plans.index') }}">交易计划</a></li>
+          @endif
+        @endauth
       </ul>
+      @if(route_class() !== 'plans-index' && route_class() !== 'plans-search')
       <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('topics.search') }}" accept-charset="UTF-8">
         <div class="input-group">
-          <input class="form-control border-right-0" type="search" name="q" value="{{ request('q') }}" placeholder="Search" aria-label="Search">
+          <input class="form-control border-right-0" type="search" name="q" value="{{ request('q') }}" placeholder="搜索文章" aria-label="Search">
           <span class="input-group-append bg-white border-left-0">
             <span class="input-group-text bg-transparent">
               <i class="fas fa-search"></i>
@@ -26,6 +32,18 @@
         </span>
         </div>
       </form>
+      @else
+        <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('plans.search') }}" accept-charset="UTF-8">
+          <div class="input-group">
+            <input class="form-control border-right-0" type="search" name="q" value="{{ request('q') }}" placeholder="搜索symbol" aria-label="Search">
+            <span class="input-group-append bg-white border-left-0">
+            <span class="input-group-text bg-transparent">
+              <i class="fas fa-search"></i>
+            </span>
+        </span>
+          </div>
+        </form>
+      @endif
 
       &nbsp;&nbsp;&nbsp;&nbsp;
       <!-- Right Side Of Navbar -->
