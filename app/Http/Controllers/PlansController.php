@@ -57,7 +57,7 @@ class PlansController extends Controller
         $plan->user_id = Auth::id();
         $plan->save();
 
-        return redirect()->route('plans.index')->with('success', '交易计划创建成功！！');
+        return redirect()->route('plans.index')->with('success', '交易计划创建成功！');
     }
 
     public function destroy(Plan $plan)

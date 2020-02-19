@@ -89,13 +89,12 @@ return [
     ],
 
     'elasticsearch' => [
-        'prefix' => env('ELASTICSEARCH_PREFIX', '_'),
-        'hosts' => [
-            env('ELASTICSEARCH_HOST', 'http://localhost'),
-        ],
+        'prefix' => env('ELASTICSEARCH_PREFIX', 'bitime_'),
         'host'=>env('ELASTICSEARCH_HOST', 'localhost'),
         'port'=>env('ELASTICSEARCH_PORT',9200),
         'scheme'=>env('ELASTICSEARCH_SCHEME','http'),
+        'user' => env('ELASTICSEARCH_USER', ''),
+        'pass' => env('ELASTICSEARCH_PASS', ''),
         'analyzer' => env('ELASTICSEARCH_ANALYZER', 'ik_smart'),
         'settings' => [],
         'filter' => [

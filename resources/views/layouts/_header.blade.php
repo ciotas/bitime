@@ -16,9 +16,9 @@
         <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">随笔</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">人生</a></li>
         @auth
-          @if(Auth::id() == 1)
+{{--          @if(Auth::id() == 1)--}}
             <li class="nav-item {{ active_class(if_route('plans.index')) }}"><a class="nav-link" href="{{ route('plans.index') }}">交易计划</a></li>
-          @endif
+{{--          @endif--}}
         @endauth
       </ul>
       @if(route_class() !== 'plans-index' && route_class() !== 'plans-search')
