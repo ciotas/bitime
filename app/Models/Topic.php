@@ -8,14 +8,9 @@ class Topic extends Model
 {
     use Searchable;
 
-    /**
-     * 获取模型的索引名称.
-     *
-     * @return string
-     */
     public function searchableAs()
     {
-        return '_doc';
+        return 'topics_index';
     }
 
     public function toSearchableArray()
@@ -23,7 +18,7 @@ class Topic extends Model
         return [
             'title' => $this->title,
             'category' => $this->category->name,
-            'body' => strigTags($this->body),
+            'body' => strigTags($this->body)
         ];
     }
 

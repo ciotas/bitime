@@ -11,12 +11,11 @@ class Plan extends Model
 
     public function searchableAs()
     {
-        return '_doc';
+        return 'plans_index';
     }
 
     public function toSearchableArray()
     {
-//        $array = $this->toArray();
         return [
             'symbol' => $this->symbol,
             'name' => $this->name,
