@@ -63,6 +63,13 @@
                   <input class="form-control" type="text" name="ticker" value="{{ old('ticker', $plan->ticker ) }}" placeholder="" required />
                 </div>
                 <div class="form-group">
+                  <label for="side"><span class="text-danger">方向</span></label>
+                  <select class="form-control" name="side" required>
+                    <option value="buy" {{ $plan->side == 'buy' ? 'selected' : '' }}>做多</option>
+                    <option value="sell" {{ $plan->side == 'sell' ? 'selected' : '' }}>做空</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="type"><span class="text-danger">标准图</span></label>
                   <select class="form-control" name="type" required>
                     <option value="pdf" {{ $plan->type == 'pdf' ? 'selected' : '' }}>破底翻</option>

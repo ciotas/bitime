@@ -56,6 +56,7 @@ class PlansController extends Controller
         $plan = $plan->fill($request->all());
         $plan->user_id = Auth::id();
         $plan->save();
+
         return redirect()->route('plans.index')->with('success', '交易计划创建成功！！');
     }
 

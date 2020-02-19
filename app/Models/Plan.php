@@ -22,8 +22,11 @@ class Plan extends Model
         ];
     }
 
-    protected $fillable = ['user_id', 'crypto', 'symbol', 'name', 'total', 'lever', 'period', 'type', 'keyPrice',
-        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'expectRate'];
+    protected $fillable = [
+        'user_id', 'crypto', 'symbol', 'name', 'side', 'total',
+        'lever', 'period', 'type', 'keyPrice',
+        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'expectRate'
+    ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',
         'stopLossPrice', 'shouldBuyPrice', 'worthToBuy'];
