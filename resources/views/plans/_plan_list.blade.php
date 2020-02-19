@@ -12,9 +12,9 @@
 {{--            <li class="list-group-item">标准图：{{ $plan->type == 'pdf'?'破底翻':'突破' }}</li>--}}
 {{--            <li class="list-group-item">期望盈亏比：{{ $plan->expectRate }}</li>--}}
 {{--            <li class="list-group-item">关键价位：{{ $plan->keyPrice }}</li>--}}
-{{--            <li class="list-group-item">现行低点：{{ $plan->lowestPrice }}</li>--}}
+{{--            <li class="list-group-item">现行{{ $plan->side == 'buy'?'低':'高' }}点：{{ $plan->lowestPrice }}</li>--}}
 {{--            <li class="list-group-item">最大停损距离：{{ $plan->maxStopLossDis }}</li>--}}
-            <li class="list-group-item">可买数量：<span class="text-success">{{ $plan->availableShares }}</span></li>
+            <li class="list-group-item">可{{ $plan->side == 'buy'?'买':'卖' }}数量：<span class="text-success">{{ $plan->availableShares }}</span></li>
             <li class="list-group-item">合理进场点：<span class="text-success">{{ $plan->shouldBuyPrice }}</span></li>
             <li class="list-group-item">停损位置：<span class="text-success">{{ $plan->stopLossPrice }}</span></li>
             <li class="list-group-item">拉不赔目标：<span class="text-success">{{ $plan->breakevenPrice }}</span></li>

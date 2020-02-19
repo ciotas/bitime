@@ -59,16 +59,27 @@ class Plan extends Model
 
     public function getStopLossPriceAttribute()
     {
-        return $this->lowestPrice - 2 * $this->ticker;
+        if ($this->side == 'buy')
+        {
+            return $this->lowestPrice - 2 * $this->ticker;
+        } else {
+            return $this->lowestPrice + 2 * $this->ticker;
+        }
     }
 
     public function getShouldBuyPriceAttribute()
     {
-        return $this->stopLossPrice + $this->maxStopLossDis;
+        if ($this->side == 'buy')
+        {
+            return $this->stopLossPrice + $this->maxStopLossDis;
+        } else {
+            return $this->stopLossPrice - $this->maxStopLossDis;
+        }
+
     }
 
     public function getWorthToBuyAttribute()
     {
-        return $this->maxStopLossDis > 0 ? ($this->targetPrice - $this->ShouldBuyPrice) / $this->maxStopLossDis <=> $this->expectRate : '-1';
+        return $this->maxStopLossDis > 0 ? abs($this->targetPrice - $this->ShouldBuyPrice) / $this->maxStopLossDis <=> $this->expectRate : '-1';
     }
 }

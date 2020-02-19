@@ -89,7 +89,7 @@ return [
     ],
 
     'elasticsearch' => [
-        'prefix' => env('ELASTICSEARCH_PREFIX', 'bitime_'),
+        'prefix' => env('ELASTICSEARCH_PREFIX', '_'),
         'hosts' => [
             env('ELASTICSEARCH_HOST', 'http://localhost'),
         ],

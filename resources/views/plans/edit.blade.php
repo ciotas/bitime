@@ -82,7 +82,7 @@
                   <input class="form-control" type="text" name="keyPrice" value="{{ old('keyPrice', $plan->keyPrice ) }}" placeholder="" required />
                 </div>
                 <div class="form-group">
-                  <label for="lowestPrice"><span class="text-danger">现行低点</span></label>
+                  <label for="lowestPrice"><span class="text-danger">现行低/高点</span></label>
                   <input class="form-control" type="text" name="lowestPrice" value="{{ old('lowestPrice', $plan->lowestPrice ) }}" placeholder="" required />
                 </div>
                 <div class="form-group">
