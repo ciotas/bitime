@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                   <label for="name">名称</label>
-                  <input class="form-control" type="text" name="name" value="{{ old('name', $plan->name ) }}" placeholder="可选" required />
+                  <input class="form-control" type="text" name="name" value="{{ old('name', $plan->name ) }}" placeholder="可选" />
                 </div>
                 <div class="form-group">
                   <label for="period">周期</label>
