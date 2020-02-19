@@ -97,7 +97,7 @@
                   <label for="expectRate">期望盈亏比</label>
                   <select class="form-control" name="expectRate" required>
                     @foreach(config('classification.expectRates') as $expectRate)
-                      <option value="{{ $expectRate }}" {{ $plan->type == $expectRate ? 'selected' : '' }}>{{ $expectRate }}</option>
+                      <option value="{{ $expectRate }}" {{ $plan->expectRate == $expectRate ? 'selected' : '' }}>{{ $expectRate }}</option>
                     @endforeach
                   </select>
                 </div>
