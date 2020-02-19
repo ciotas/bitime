@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Laravel\Scout\ScoutServiceProvider::class,
-        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        Baijunyao\LaravelScoutElasticsearch\ElasticsearchServiceProvider::class,
         /*
          * Package Service Providers...
          */

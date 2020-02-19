@@ -89,9 +89,34 @@ return [
     ],
 
     'elasticsearch' => [
-        'index' => env('ELASTICSEARCH_INDEX', 'bitime_index'),
+        'prefix' => env('ELASTICSEARCH_PREFIX', 'bitime_'),
         'hosts' => [
-            env('ELASTICSEARCH_HOST', 'http://localhost:9200'),
+            env('ELASTICSEARCH_HOST', 'http://localhost'),
         ],
-    ],
+        'host'=>env('ELASTICSEARCH_HOST', 'localhost'),
+        'port'=>env('ELASTICSEARCH_PORT',9200),
+        'scheme'=>env('ELASTICSEARCH_SCHEME','http'),
+        'analyzer' => env('ELASTICSEARCH_ANALYZER', 'ik_smart'),
+        'settings' => [],
+        'filter' => [
+            '+',
+            '-',
+            '&',
+            '|',
+            '!',
+            '(',
+            ')',
+            '{',
+            '}',
+            '[',
+            ']',
+            '^',
+            '\\',
+            '"',
+            '~',
+            '*',
+            '?',
+            ':'
+        ]
+    ]
 ];

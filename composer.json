@@ -9,8 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "algolia/algoliasearch-client-php": "^2.5",
-        "algolia/scout-extended": "^1.8",
+        "baijunyao/laravel-scout-elasticsearch": "^5.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "gregwar/captcha": "^1.1",
@@ -33,7 +32,6 @@
         "spatie/laravel-query-builder": "^2.5",
         "summerblue/administrator": "6.*",
         "summerblue/laravel-active": "6.*",
-        "tamayo/laravel-scout-elastic": "^5.0",
         "tymon/jwt-auth": "1.0.0-rc.5",
         "viacreative/sudo-su": "~1.1"
     },

@@ -20,10 +20,11 @@ class Topic extends Model
 
     public function toSearchableArray()
     {
-        $array = $this->toArray();
-        $array['category'] = $this->category->name;
-        $array['body'] = strigTags($this->body);
-        return $array;
+        return [
+            'title' => $this->title,
+            'category' => $this->category->name,
+            'body' => strigTags($this->body),
+        ];
     }
 
     protected $fillable = [
