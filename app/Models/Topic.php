@@ -8,10 +8,10 @@ class Topic extends Model
 {
     use Searchable;
 
-//    public function searchableAs()
-//    {
-//        return 'topics_index';
-//    }
+    public function searchableAs()
+    {
+        return 'topics_index';
+    }
 
     public function toSearchableArray()
     {
