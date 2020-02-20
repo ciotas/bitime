@@ -109,5 +109,25 @@ return [
         'pass' => env('ELASTICSEARCH_PASS', ''),
         'analyzer' => env('ELASTICSEARCH_ANALYZER', 'ik_smart'),
         'settings' => [],
+        'filter' => [
+            '+',
+            '-',
+            '&',
+            '|',
+            '!',
+            '(',
+            ')',
+            '{',
+            '}',
+            '[',
+            ']',
+            '^',
+            '\\',
+            '"',
+            '~',
+            '*',
+            '?',
+            ':'
+        ]
     ]
 ];
