@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-//        Laravel\Scout\ScoutServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         Baijunyao\LaravelScoutElasticsearch\ElasticsearchServiceProvider::class,
         /*
          * Package Service Providers...

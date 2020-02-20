@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30665cce35f523e678df1450db0623f2",
+    "content-hash": "530d9b1d2b9ffd1c884e5ef5d368d5d6",
     "packages": [
         {
             "name": "baijunyao/laravel-scout-elasticsearch",
