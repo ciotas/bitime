@@ -18,7 +18,7 @@ class Topic extends Model
         return [
             'title' => $this->title,
             'category' => $this->category->name,
-            'body' => strigTags($this->body)
+//            'body' => strigTags($this->body)
         ];
     }
 
