@@ -9,10 +9,10 @@ class Plan extends Model
 {
     use Searchable;
 
-    public function searchableAs()
-    {
-        return 'plans_index';
-    }
+//    public function searchableAs()
+//    {
+//        return 'plans_index';
+//    }
 
     public function toSearchableArray()
     {
