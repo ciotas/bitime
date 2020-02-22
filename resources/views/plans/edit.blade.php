@@ -86,12 +86,12 @@
                   <input class="form-control" type="text" name="lowestPrice" value="{{ old('lowestPrice', $plan->lowestPrice ) }}" placeholder="" required />
                 </div>
                 <div class="form-group">
-                  <label for="targetPrice"><span class="text-danger">停利目标</span></label>
-                  <input class="form-control" type="text" name="targetPrice" value="{{ old('targetPrice', $plan->targetPrice ) }}" placeholder="" required />
-                </div>
-                <div class="form-group">
                   <label for="breakevenPrice"><span class="text-danger">拉不赔目标</span></label>
                   <input class="form-control" type="text" name="breakevenPrice" value="{{ old('breakevenPrice', $plan->breakevenPrice ) }}" placeholder="" required />
+                </div>
+                <div class="form-group">
+                  <label for="targetPrice"><span class="text-danger">停利目标</span></label>
+                  <input class="form-control" type="text" name="targetPrice" value="{{ old('targetPrice', $plan->targetPrice ) }}" placeholder="" required />
                 </div>
                 <div class="form-group">
                   <label for="expectRate">期望盈亏比</label>

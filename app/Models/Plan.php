@@ -43,42 +43,79 @@ class Plan extends Model
 
     public function getAvailableMoneyAttribute()
     {
-        return sprintf('%.0f', ($this->total * $this->lever)/4);
+        return round(($this->total * $this->lever)/4);
     }
 
     public function getAvailableSharesAttribute()
     {
-        return sprintf('%.2f', $this->availableMoney/$this->keyPrice);
+        return round($this->availableMoney/$this->keyPrice, 2);
     }
 
     public function getMaxStopLossDisAttribute()
     {
         $len = _getFloatLength($this->ticker);
-        return sprintf('%.'.$len.'f', $this->keyPrice * 0.015);
+        return round($this->keyPrice * 0.015, $len);
     }
 
     public function getStopLossPriceAttribute()
     {
+        $len = _getFloatLength($this->ticker);
         if ($this->side == 'buy')
         {
-            return $this->lowestPrice - 2 * $this->ticker;
+            return round($this->lowestPrice - 2 * $this->ticker, $len);
         } else {
-            return $this->lowestPrice + 2 * $this->ticker;
+            return round($this->lowestPrice + 2 * $this->ticker, $len);
         }
     }
 
     public function getShouldBuyPriceAttribute()
     {
+        $len = _getFloatLength($this->ticker);
         if ($this->side == 'buy')
         {
-            return $this->stopLossPrice + $this->maxStopLossDis;
+            return round($this->stopLossPrice + $this->maxStopLossDis, $len);
         } else {
-            return $this->stopLossPrice - $this->maxStopLossDis;
+            return round($this->stopLossPrice - $this->maxStopLossDis, $len);
         }
     }
 
     public function getWorthToBuyAttribute()
     {
         return $this->maxStopLossDis > 0 ? abs($this->targetPrice - $this->ShouldBuyPrice) / $this->maxStopLossDis <=> $this->expectRate : '-1';
+    }
+
+    public function getBreakevenPriceAttribute($breakevenPrice)
+    {
+        $len = _getFloatLength($this->ticker);
+        return number_format($breakevenPrice, $len);
+    }
+
+    public function getTargetPriceAttribute($targetPrice)
+    {
+        $len = _getFloatLength($this->ticker);
+        return number_format($targetPrice, $len);
+    }
+
+    public function getTotalAttribute($total)
+    {
+        return number_format($total);
+    }
+
+    public function getTickerAttribute($ticker)
+    {
+        $len = _getFloatLength($ticker);
+        return number_format($ticker, $len);
+    }
+
+    public function getKeyPriceAttribute($keyPrice)
+    {
+        $len = _getFloatLength($this->ticker);
+        return number_format($keyPrice, $len);
+    }
+
+    public function getLowestPriceAttribute($lowestPrice)
+    {
+        $len = _getFloatLength($this->ticker);
+        return number_format($lowestPrice, $len);
     }
 }

@@ -52,7 +52,7 @@ function model_plural_name($model)
 }
 
 function _getFloatLength($floatNum) {
-    $length = strlen($floatNum);
+    $length = strlen(floatval($floatNum));
 
     $pos = strpos($floatNum, ".");//zero-based counting.
 
