@@ -75,7 +75,6 @@ class Plan extends Model
         } else {
             return $this->stopLossPrice - $this->maxStopLossDis;
         }
-
     }
 
     public function getWorthToBuyAttribute()

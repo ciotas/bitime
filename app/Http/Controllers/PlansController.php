@@ -48,7 +48,7 @@ class PlansController extends Controller
         $data['user_id'] = Auth::id();
         $data['market'] = $request->market ?? 'crypto';
         $plan->update($data);
-        return redirect()->route('plans.index', ['market', $request->market])->with('success', '修改'.$plan->symbol.'的交易计划成功！！');
+        return redirect()->route('plans.index', ['market' => $request->market])->with('success', '修改'.$plan->symbol.'的交易计划成功！！');
     }
 
     public function store(PlansRequest $request, Plan $plan)
@@ -56,7 +56,6 @@ class PlansController extends Controller
         $plan = $plan->fill($request->all());
         $plan->user_id = Auth::id();
         $plan->save();
-
         return redirect()->route('plans.index')->with('success', '交易计划创建成功！');
     }
 

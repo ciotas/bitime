@@ -17,17 +17,18 @@ class CreatePlansTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('market')->default('crypto');
-            $table->string('symbol');
+            $table->string('symbol')->index();
             $table->string('name')->nullable();
-            $table->float('total');
+            $table->string('side')->default('buy');
+            $table->decimal('total');
             $table->integer('lever')->default(1);
             $table->string('period')->default('12h');
             $table->string('type')->default('pdf'); // pdf,break
-            $table->float('keyPrice');
-            $table->float('lowestPrice');
-            $table->float('targetPrice');
-            $table->float('breakevenPrice');
-            $table->float('ticker');
+            $table->decimal('keyPrice');
+            $table->decimal('lowestPrice');
+            $table->decimal('targetPrice');
+            $table->decimal('breakevenPrice');
+            $table->decimal('ticker');
             $table->integer('expectRate')->default(3);
             $table->timestamps();
         });
