@@ -87,35 +87,35 @@ class Plan extends Model
     public function getBreakevenPriceAttribute($breakevenPrice)
     {
         $len = _getFloatLength($this->ticker);
-        return number_format($breakevenPrice, $len);
+        return $breakevenPrice ? number_format($breakevenPrice, $len) : '';
     }
 
     public function getTargetPriceAttribute($targetPrice)
     {
         $len = _getFloatLength($this->ticker);
-        return number_format($targetPrice, $len);
+        return $targetPrice ? number_format($targetPrice, $len) : '';
     }
 
     public function getTotalAttribute($total)
     {
-        return number_format($total);
+        return $total ? number_format($total) : '';
     }
 
     public function getTickerAttribute($ticker)
     {
         $len = _getFloatLength($ticker);
-        return number_format($ticker, $len);
+        return $ticker ? number_format($ticker, $len) : '';
     }
 
     public function getKeyPriceAttribute($keyPrice)
     {
         $len = _getFloatLength($this->ticker);
-        return number_format($keyPrice, $len);
+        return $keyPrice ? number_format($keyPrice, $len) : '';
     }
 
     public function getLowestPriceAttribute($lowestPrice)
     {
         $len = _getFloatLength($this->ticker);
-        return number_format($lowestPrice, $len);
+        return $lowestPrice ? number_format($lowestPrice, $len) : '';
     }
 }
