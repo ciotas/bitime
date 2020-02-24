@@ -34,12 +34,11 @@
                 </span>
                <a class="text-secondary" href="{{ route('tags.show', $tag->id) }}"> {{ $tag->name }}</a>
             @endforeach
-
-{{--            <span> • </span>--}}
-{{--            <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">--}}
-{{--              <i class="far fa-user"></i>--}}
-{{--              {{ $topic->user->name }}--}}
-{{--            </a>--}}
+            <span> • </span>
+            <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
+              <i class="far fa-user"></i>
+              {{ $topic->user->name }}
+            </a>
             <span> • </span>
             <i class="far fa-clock"></i>
             <span title="最后活跃于：{{ $topic->updated_at }}">{{ $topic->updated_at->diffForHumans() }}</span>

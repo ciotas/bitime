@@ -17290,7 +17290,7 @@ readers do not read off random characters that represent icons */
 
 body {
   font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* header */
@@ -17298,7 +17298,6 @@ body {
 .navbar-static-top {
   border-color: #e7e7e7;
   background-color: #fff;
-  box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
   border-top: 4px solid #00b5ad;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 40px;
@@ -17351,22 +17350,12 @@ body {
 
 /* Topic Index Page */
 
-.topics-index-page .topic-list .nav > li > a,
-.categories-show-page .topic-list .nav > li > a,
-.root-page .topic-list .nav > li > a,
-.topics-search-page .topic-list .nav > li > a,
-.tags-show-page .topic-list .nav > li > a {
-  position: relative;
-  display: block;
-  padding: 5px 14px;
-  font-size: 0.9em;
-}
-
 .topics-index-page .topic-list a,
 .categories-show-page .topic-list a,
 .root-page .topic-list a,
 .topics-search-page .topic-list a,
-.tags-show-page .topic-list a {
+.tags-show-page .topic-list a,
+.plans-index-page .topic-list a {
   color: #444444;
 }
 
@@ -17374,7 +17363,8 @@ body {
 .categories-show-page .topic-list .meta,
 .root-page .topic-list .meta,
 .topics-search-page .topic-list .meta,
-.tags-show-page .topic-list .meta {
+.tags-show-page .topic-list .meta,
+.plans-index-page .topic-list .meta {
   font-size: 0.9em;
   color: #b3b3b3;
 }
@@ -17383,7 +17373,8 @@ body {
 .categories-show-page .topic-list .meta a,
 .root-page .topic-list .meta a,
 .topics-search-page .topic-list .meta a,
-.tags-show-page .topic-list .meta a {
+.tags-show-page .topic-list .meta a,
+.plans-index-page .topic-list .meta a {
   color: #b3b3b3;
 }
 
@@ -17391,7 +17382,8 @@ body {
 .categories-show-page .topic-list .badge,
 .root-page .topic-list .badge,
 .topics-search-page .topic-list .badge,
-.tags-show-page .topic-list .badge {
+.tags-show-page .topic-list .badge,
+.plans-index-page .topic-list .badge {
   background-color: #d8d8d8;
 }
 
@@ -17399,7 +17391,8 @@ body {
 .categories-show-page .topic-list hr,
 .root-page .topic-list hr,
 .topics-search-page .topic-list hr,
-.tags-show-page .topic-list hr {
+.tags-show-page .topic-list hr,
+.plans-index-page .topic-list hr {
   margin-top: 12px;
   margin-bottom: 12px;
   border: 0;

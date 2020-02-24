@@ -13,7 +13,6 @@ class PlansController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
         $this->binance = app('binance');
     }
 
@@ -21,9 +20,9 @@ class PlansController extends Controller
     {
         if($request->market)
         {
-            $plans = Plan::where(['user_id' => Auth::id(), 'market' => $request->market])->withOrder()->paginate();
+            $plans = Plan::where('market', $request->market)->withOrder()->paginate(12);
         } else {
-            $plans = Plan::where('user_id', Auth::id())->withOrder()->paginate();
+            $plans = Plan::withOrder()->paginate(12);
         }
         return view('plans.index', compact('plans', 'plan'));
     }
@@ -32,10 +31,10 @@ class PlansController extends Controller
     {
         $words = trim(request('q'));
         if ($words) {
-            $plans = $plan->search($words)->paginate(20);
-            return view('plans.search', compact('plans', 'plan'))->with('q', $words);
+            $plans = $plan->search($words)->paginate(12);
+            return view('plans.search', compact('plans'))->with('q', $words);
         } else {
-            $plans = Plan::where('user_id', Auth::id())->withOrder()->paginate();
+            $plans = Plan::withOrder()->paginate(12);
             return view('plans.index', compact('plans', 'plan'));
         }
     }

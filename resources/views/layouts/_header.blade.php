@@ -15,7 +15,7 @@
         <li class="nav-item {{ category_nav_active(1) }}"><a class="nav-link" href="{{ route('categories.show', 1) }}">技术</a></li>
         <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">随笔</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">人生</a></li>
-        <li class="nav-item {{ active_class(if_route('plans.index')) }}"><a class="nav-link" href="{{ route('plans.index') }}">交易计划</a></li>
+        <li class="nav-item {{ active_class(if_route('plans.index')) }}"><a class="nav-link" href="{{ route('plans.index') }}">交易</a></li>
       </ul>
       @if(route_class() !== 'plans-index' && route_class() !== 'plans-search')
       <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('topics.search') }}" accept-charset="UTF-8">
@@ -40,7 +40,6 @@
           </div>
         </form>
       @endif
-
       &nbsp;&nbsp;&nbsp;&nbsp;
       <!-- Right Side Of Navbar -->
       <ul class="navbar-nav navbar-right">

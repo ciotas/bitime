@@ -1,43 +1,48 @@
-<div class="row row-cols-1 row-cols-md-3">
+<div class="row row-cols-1 row-cols-md-4">
 @if (count($plans))
     @foreach ($plans as $plan)
       <div class="col mb-3">
         <div class="card">
           <h5 class="card-header">{{$plan->name ? $plan->name .'/ '. $plan->symbol : $plan->symbol }}</h5>
           <ul class="list-group list-group-flush">
-{{--            <li class="list-group-item">总资金：{{ $plan->total .' * '.  $plan->lever }}</li>--}}
-{{--            <li class="list-group-item">杠杆：{{ $plan->lever }}</li>--}}
-{{--            <li class="list-group-item">可用资金：{{ $plan->availableMoney }}</li>--}}
-            <li class="list-group-item">方向：{!! ($plan->type == 'pdf'?'破底翻':'突破').'，'.($plan->side == 'buy'?'<span class="text-success">做多</span>':'<span class="text-danger">做空</span>') !!}</li>
-{{--            <li class="list-group-item">标准图：{{ $plan->type == 'pdf'?'破底翻':'突破' }}</li>--}}
-{{--            <li class="list-group-item">期望盈亏比：{{ $plan->expectRate }}</li>--}}
-{{--            <li class="list-group-item">关键价位：{{ $plan->keyPrice }}</li>--}}
-{{--            <li class="list-group-item">现行{{ $plan->side == 'buy'?'低':'高' }}点：{{ $plan->lowestPrice }}</li>--}}
-{{--            <li class="list-group-item">最大停损距离：{{ $plan->maxStopLossDis }}</li>--}}
-            <li class="list-group-item">可{{ $plan->side == 'buy'?'买':'卖' }}数量：<span class="text-success">{{ $plan->availableShares }}</span></li>
-            <li class="list-group-item">合理进场点：<span class="text-success">{{ $plan->shouldBuyPrice }}</span></li>
-            <li class="list-group-item">停损位置：<span class="text-success">{{ $plan->stopLossPrice }}</span></li>
-            <li class="list-group-item">拉不赔目标：<span class="text-success">{{ $plan->breakevenPrice }}</span></li>
-            <li class="list-group-item">停利目标：<span class="text-success">{{ $plan->targetPrice }}</span></li>
-            <li class="list-group-item">值得入吗：{!! $plan->worthToBuy >= 0 ? '<span class="badge badge-success">Y</span>' : '<span class="badge badge-danger">N</span>' !!}</li>
+            <li class="list-group-item"><span class="text-secondary">方向：</span>{!! ($plan->type == 'pdf'?'破底翻':'突破').'，'.($plan->side == 'buy'?'<span class="text-success">做多</span>':'<span class="text-danger">做空</span>') !!}</li>
+            <li class="list-group-item"><span class="text-secondary">可{{ $plan->side == 'buy'?'买':'卖' }}数量：</span>{{ $plan->availableShares }}</li>
+            <li class="list-group-item"><span class="text-secondary">进场点：</span>{{ $plan->shouldBuyPrice }}</li>
+            <li class="list-group-item"><span class="text-secondary">停损位置：</span>{{ $plan->stopLossPrice }}</li>
+            <li class="list-group-item"><span class="text-secondary">拉不赔目标：</span>{{ $plan->breakevenPrice }}</li>
+            <li class="list-group-item"><span class="text-secondary">停利目标：</span>{{ $plan->targetPrice }}</li>
+            <li class="list-group-item"><span class="text-secondary">最大盈/亏：</span>{{ $plan->maxProfit }} / -{{ $plan->maxLoss }} = {{ $plan->realRate }}</li>
+            <li class="list-group-item"><span class="text-secondary">建议：</span> {{ $plan->worthToBuy }}</li>
           </ul>
+          @if(Auth::check() && $plan->UserSubscribed)
+            @can('manage_trades')
+            <div class="card-body">
+              <form action="{{ route('plans.destroy', $plan->id) }}" method="post"
+                    style="display: inline-block;"
+                    onsubmit="return confirm('您确定要删除吗？');">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                  <i class="far fa-trash-alt"></i> 删除
+                </button>
+              </form>
+              @include('plans._editbtn', ['plan'=> $plan])
+            </div>
+            @endcan
+          @else
           <div class="card-body">
-            <form action="{{ route('plans.destroy', $plan->id) }}" method="post"
-                  style="display: inline-block;"
-                  onsubmit="return confirm('您确定要删除吗？');">
+            <form action="{{ route('users.subscribe.store') }}" method="post">
               {{ csrf_field() }}
-              {{ method_field('DELETE') }}
-              <button type="submit" class="btn btn-outline-danger btn-sm">
-                <i class="far fa-trash-alt"></i> 删除
+              <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+              <button type="submit" class="btn btn-block btn-outline-success btn-sm">
+                 订阅
               </button>
             </form>
-            @include('plans._editbtn', ['plan'=> $plan])
-
           </div>
+          @endif
         </div>
       </div>
     @endforeach
-
 @else
   <div class="empty-block">暂无数据 ~_~ </div>
 @endif

@@ -57,4 +57,6 @@ Route::get('/users/{user_id}/plans', 'PlansController@index')->name('plans.index
 Route::resource('plans', 'PlansController', ['only' => ['index', 'create', 'store', 'update', 'destroy']]);
 Route::get('plans/search', 'PlansController@search')->name('plans.search');
 
+Route::post('users/subscribe', 'SubscribeController@store')->name('users.subscribe.store');
+Route::delete('users/subscribe', 'SubscribeController@destroy')->name('users.subscribe.destroy');
 

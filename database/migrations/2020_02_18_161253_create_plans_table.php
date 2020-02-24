@@ -15,7 +15,6 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
             $table->string('market')->default('crypto');
             $table->string('symbol')->index();
             $table->string('name')->nullable();

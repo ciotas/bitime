@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Scout\Searchable;
 
 class Plan extends Model
@@ -23,17 +24,33 @@ class Plan extends Model
     }
 
     protected $fillable = [
-        'user_id', 'crypto', 'symbol', 'name', 'side', 'total',
+        'crypto', 'symbol', 'name', 'side', 'total',
         'lever', 'period', 'type', 'keyPrice',
         'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'expectRate'
     ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',
-        'stopLossPrice', 'shouldBuyPrice', 'worthToBuy'];
+        'stopLossPrice', 'shouldBuyPrice', 'worthToBuy',
+        'userSubscribed', 'maxLoss', 'maxProfit', 'realRate'];
 
-    public function user()
+    const EXPECT_STATUS_STRONG_NO_SUGGEST = 'strong_no_suggest'; // <=1
+    const EXPECT_STATUS_NO_SUGGEST = 'no_suggest'; // 1<x<3
+    const EXPECT_STATUS_CAN_IN = 'can_in'; // >3 && <=4
+    const EXPECT_STATUS_SUGGEST_IN = 'suggest_in'; // >5 && < 8
+    const EXPECT_STATUS_STRONG_IN = 'strong_in'; // >= 8
+
+    // 让状态的中英文对应起来
+    public static $expectStatusMap = [
+        self::EXPECT_STATUS_STRONG_NO_SUGGEST    => '不可入场',
+        self::EXPECT_STATUS_NO_SUGGEST    => '不建议入场',
+        self::EXPECT_STATUS_CAN_IN    => '可入场',
+        self::EXPECT_STATUS_SUGGEST_IN    => '建议入',
+        self::EXPECT_STATUS_STRONG_IN => '强烈建议入'
+    ];
+
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'subscribes');
     }
 
     public function scopeWithOrder($query)
@@ -79,7 +96,22 @@ class Plan extends Model
 
     public function getWorthToBuyAttribute()
     {
-        return $this->maxStopLossDis > 0 ? abs($this->targetPrice - $this->ShouldBuyPrice) / $this->maxStopLossDis <=> $this->expectRate : '-1';
+        if ($this->realRate < 1) {
+            return static::$expectStatusMap[static::EXPECT_STATUS_STRONG_NO_SUGGEST];
+        } elseif ($this->realRate >= 1 && $this->realRate < 3) {
+            return static::$expectStatusMap[static::EXPECT_STATUS_NO_SUGGEST];
+        } elseif ($this->realRate >= 3 && $this->realRate < 5) {
+            return static::$expectStatusMap[static::EXPECT_STATUS_CAN_IN];
+        } elseif ($this->realRate >= 5 && $this->realRate < 8) {
+            return static::$expectStatusMap[static::EXPECT_STATUS_SUGGEST_IN];
+        } else {
+            return static::$expectStatusMap[static::EXPECT_STATUS_STRONG_IN];
+        }
+    }
+
+    public function getRealRateAttribute()
+    {
+        return  round(abs($this->targetPrice - $this->ShouldBuyPrice) / $this->maxStopLossDis, 2) ;
     }
 
     public function getBreakevenPriceAttribute($breakevenPrice)
@@ -115,5 +147,20 @@ class Plan extends Model
     {
         $len = numberOfDecimals($lowestPrice);
         return $lowestPrice ? number_format($lowestPrice, $len) : '';
+    }
+
+    public function getMaxLossAttribute()
+    {
+        return round($this->maxStopLossDis * $this->AvailableShares);
+    }
+
+    public function getMaxProfitAttribute()
+    {
+        return round(abs($this->targetPrice - $this->ShouldBuyPrice) * $this->AvailableShares);
+    }
+
+    public function getUserSubscribedAttribute()
+    {
+        return in_array(Auth::id(), $this->users->pluck('id')->toArray()) ? true : false;
     }
 }

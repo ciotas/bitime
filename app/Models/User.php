@@ -142,6 +142,6 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
 
     public function plans()
     {
-        return $this->hasMany(Plan::class);
+        return $this->belongsToMany(Plan::class, 'subscribes');
     }
 }

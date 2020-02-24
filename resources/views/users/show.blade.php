@@ -34,17 +34,24 @@
           <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link bg-transparent {{ active_class(if_query('tab', null)) }}" href="{{ route('users.show', $user->id) }}">
-                Ta 的话题
+                我的话题
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link bg-transparent {{ active_class(if_query('tab', 'replies')) }}" href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}">
-                Ta 的回复
+                我的回复
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link bg-transparent {{ active_class(if_query('tab', 'subscribe')) }}" href="{{ route('users.show', [$user->id, 'tab' => 'subscribe']) }}">
+                我的订阅
               </a>
             </li>
           </ul>
           @if (if_query('tab', 'replies'))
             @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])
+          @elseif(if_query('tab', 'subscribe'))
+            @include('users._plans', ['plans' => $user->plans()->paginate(5)])
           @else
             @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
           @endif
