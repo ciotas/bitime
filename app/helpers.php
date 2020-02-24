@@ -51,10 +51,10 @@ function model_plural_name($model)
     return Str::plural($snake_case_name);
 }
 
-function _getFloatLength($floatNum) {
-    $length = strlen(floatval($floatNum));
-
-    $pos = strpos($floatNum, ".");//zero-based counting.
-
-    return !$pos ? 0 : ($length - $pos) - 1;
+function numberOfDecimals($val = 0.00000001){
+    $val = sprintf("%.14f", $val);
+    $parts = explode('.', $val);
+    $parts[1] = rtrim($parts[1], "0");
+    return strlen($parts[1]);
 }
+

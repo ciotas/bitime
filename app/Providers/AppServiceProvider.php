@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-
+use Binance\API;
 use Illuminate\Http\Resources\Json\Resource;
 use VIACreative\SudoSu\ServiceProvider;
 
@@ -18,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
         if (app()->isLocal()) {
             $this->app->register(ServiceProvider::class);
         }
+        $this->app->singleton('binance', function () {
+            return new API(config('market.binance.api_key'), config('market.binance.secret'));
+        });
     }
 
     /**

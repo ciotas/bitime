@@ -43,25 +43,24 @@ class Plan extends Model
 
     public function getAvailableMoneyAttribute()
     {
-        return round(($this->total * $this->lever)/4);
+        return round(($this->total * $this->lever) / 4);
     }
 
     public function getAvailableSharesAttribute()
     {
-        return round($this->availableMoney/$this->keyPrice, 2);
+        return round($this->availableMoney / $this->keyPrice, 2);
     }
 
     public function getMaxStopLossDisAttribute()
     {
-        $len = _getFloatLength($this->ticker);
+        $len = numberOfDecimals($this->ticker);
         return round($this->keyPrice * 0.015, $len);
     }
 
     public function getStopLossPriceAttribute()
     {
-        $len = _getFloatLength($this->ticker);
-        if ($this->side == 'buy')
-        {
+        $len = numberOfDecimals($this->ticker);
+        if ($this->side == 'buy') {
             return round($this->lowestPrice - 2 * $this->ticker, $len);
         } else {
             return round($this->lowestPrice + 2 * $this->ticker, $len);
@@ -70,9 +69,8 @@ class Plan extends Model
 
     public function getShouldBuyPriceAttribute()
     {
-        $len = _getFloatLength($this->ticker);
-        if ($this->side == 'buy')
-        {
+        $len = numberOfDecimals($this->ticker);
+        if ($this->side == 'buy') {
             return round($this->stopLossPrice + $this->maxStopLossDis, $len);
         } else {
             return round($this->stopLossPrice - $this->maxStopLossDis, $len);
@@ -86,13 +84,13 @@ class Plan extends Model
 
     public function getBreakevenPriceAttribute($breakevenPrice)
     {
-        $len = _getFloatLength($this->ticker);
+        $len = numberOfDecimals($breakevenPrice);
         return $breakevenPrice ? number_format($breakevenPrice, $len) : '';
     }
 
     public function getTargetPriceAttribute($targetPrice)
     {
-        $len = _getFloatLength($this->ticker);
+        $len = numberOfDecimals($targetPrice);
         return $targetPrice ? number_format($targetPrice, $len) : '';
     }
 
@@ -103,19 +101,19 @@ class Plan extends Model
 
     public function getTickerAttribute($ticker)
     {
-        $len = _getFloatLength($ticker);
+        $len = numberOfDecimals($ticker);
         return $ticker ? number_format($ticker, $len) : '';
     }
 
     public function getKeyPriceAttribute($keyPrice)
     {
-        $len = _getFloatLength($this->ticker);
+        $len = numberOfDecimals($keyPrice);
         return $keyPrice ? number_format($keyPrice, $len) : '';
     }
 
     public function getLowestPriceAttribute($lowestPrice)
     {
-        $len = _getFloatLength($this->ticker);
+        $len = numberOfDecimals($lowestPrice);
         return $lowestPrice ? number_format($lowestPrice, $len) : '';
     }
 }

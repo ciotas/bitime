@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PlansController extends Controller
 {
+    protected $binance;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->binance = app('binance');
     }
 
     public function index(Request $request, Plan $plan)
