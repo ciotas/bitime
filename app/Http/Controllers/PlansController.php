@@ -13,11 +13,15 @@ class PlansController extends Controller
 
     public function __construct()
     {
-        $this->binance = app('binance');
+//        $this->binance = app('binance');
     }
 
     public function index(Request $request, Plan $plan)
     {
+        if(! $request->market)
+        {
+            return redirect()->route('plans.index', ['market'=>'crypto']);
+        }
         if($request->market)
         {
             $plans = Plan::where('market', $request->market)->withOrder()->paginate(12);
@@ -44,6 +48,11 @@ class PlansController extends Controller
         return view('plans.edit', compact('plan'));
     }
 
+    public function edit(Plan $plan)
+    {
+        return view('plans.edit', compact('plan'));
+    }
+
     public function update(PlansRequest $request, Plan $plan)
     {
         $data = $request->all();
@@ -58,7 +67,7 @@ class PlansController extends Controller
         $plan = $plan->fill($request->all());
         $plan->user_id = Auth::id();
         $plan->save();
-        return redirect()->route('plans.index')->with('success', '交易计划创建成功！');
+        return redirect()->route('plans.index', [ 'market' => $plan->market ])->with('success', $plan->name.'的交易计划发布成功！');
     }
 
     public function destroy(Plan $plan)

@@ -24,9 +24,9 @@ class Plan extends Model
     }
 
     protected $fillable = [
-        'crypto', 'symbol', 'name', 'side', 'total',
+        'market', 'symbol', 'name', 'side', 'total',
         'lever', 'period', 'type', 'keyPrice',
-        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker'
+        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'status'
     ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',
@@ -117,36 +117,36 @@ class Plan extends Model
     public function getBreakevenPriceAttribute($breakevenPrice)
     {
         $len = numberOfDecimals($breakevenPrice);
-        return $breakevenPrice ? number_format($breakevenPrice, $len) : '';
+        return $breakevenPrice ? round($breakevenPrice, $len) : '';
     }
 
     public function getTargetPriceAttribute($targetPrice)
     {
         $len = numberOfDecimals($targetPrice);
-        return $targetPrice ? number_format($targetPrice, $len) : '';
+        return $targetPrice ? round($targetPrice, $len) : '';
     }
 
     public function getTotalAttribute($total)
     {
-        return $total ? number_format($total) : '';
+        return $total ? round($total) : '';
     }
 
     public function getTickerAttribute($ticker)
     {
         $len = numberOfDecimals($ticker);
-        return $ticker ? number_format($ticker, $len) : '';
+        return $ticker ? round($ticker, $len) : '';
     }
 
     public function getKeyPriceAttribute($keyPrice)
     {
         $len = numberOfDecimals($keyPrice);
-        return $keyPrice ? number_format($keyPrice, $len) : '';
+        return $keyPrice ? round($keyPrice, $len) : '';
     }
 
     public function getLowestPriceAttribute($lowestPrice)
     {
         $len = numberOfDecimals($lowestPrice);
-        return $lowestPrice ? number_format($lowestPrice, $len) : '';
+        return $lowestPrice ? round($lowestPrice, $len) : '';
     }
 
     public function getMaxLossAttribute()

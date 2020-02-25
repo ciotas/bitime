@@ -1,7 +1,7 @@
 <?php
 return [
     'markets' => [
-        'crypto' => '加密货币',
+        'crypto' => '虚拟',
         'usa' => '美股',
         'hongkong' => '港股',
         'land' => 'A股',

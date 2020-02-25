@@ -26,7 +26,9 @@
                   <i class="far fa-trash-alt"></i> 删除
                 </button>
               </form>
-              @include('plans._editbtn', ['plan'=> $plan])
+              <a href="{{ route('plans.edit', ['plan'=>$plan->id]) }}" class="btn btn-outline-secondary btn-sm" >
+                重新计算
+              </a>
             </div>
             @endcan
           @else
