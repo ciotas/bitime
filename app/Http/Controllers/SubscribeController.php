@@ -25,7 +25,7 @@ class SubscribeController extends Controller
             'user_id'=> $user_id,
             'plan_id' => $plan_id
         ]);
-        return back()->with('success', '订阅成功！');
+        return back()->with('success', '订阅成功！可在"个人中心--我的订阅"中查看');
     }
 
     public function destroy(Request $request)

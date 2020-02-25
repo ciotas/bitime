@@ -33,7 +33,8 @@
         "summerblue/administrator": "6.*",
         "summerblue/laravel-active": "6.*",
         "tymon/jwt-auth": "1.0.0-rc.5",
-        "viacreative/sudo-su": "~1.1"
+        "viacreative/sudo-su": "~1.1",
+        "yansongda/laravel-pay": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.2",

@@ -60,3 +60,4 @@ Route::get('plans/search', 'PlansController@search')->name('plans.search');
 Route::post('users/subscribe', 'SubscribeController@store')->name('users.subscribe.store');
 Route::delete('users/subscribe', 'SubscribeController@destroy')->name('users.subscribe.destroy');
 
+Route::resource('asks', 'AsksController', ['only' => ['store', 'destroy']]);

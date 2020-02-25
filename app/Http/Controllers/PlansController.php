@@ -63,6 +63,7 @@ class PlansController extends Controller
 
     public function destroy(Plan $plan)
     {
+        $this->authorize('own', $plan);
         $plan->delete();
         return redirect()->route('plans.index')->with('message', '交易计划删除成功！');
     }

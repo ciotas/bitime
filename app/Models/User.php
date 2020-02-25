@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Ask;
 use App\Models\Traits\ActiveUserHelper;
 use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
@@ -143,5 +144,10 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     public function plans()
     {
         return $this->belongsToMany(Plan::class, 'subscribes');
+    }
+
+    public function asks()
+    {
+        return $this->hasMany(Ask::class);
     }
 }

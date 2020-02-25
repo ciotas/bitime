@@ -4,13 +4,14 @@
   <tr>
     <th scope="col">#</th>
     <th scope="col">名称</th>
-    <th scope="col">代卖</th>
+    <th scope="col">代码</th>
     <th scope="col">操作</th>
   </tr>
   </thead>
   <tbody>
   @foreach($plans as $key => $plan)
   <tr>
+    @can('own', $plan)
     <th scope="row">{{ ++$key }}</th>
     <td>{{ $plan->name }}</td>
     <td>{{ $plan->symbol }}</td>
@@ -22,6 +23,7 @@
         <input type="hidden" name="plan_id" value="{{ $plan->id }}">
         <button class="btn btn-danger btn-sm" type="submit" name="button">取消订阅</button>
       </form>
+      @endcan
     </td>
   </tr>
   @endforeach

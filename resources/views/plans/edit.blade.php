@@ -93,14 +93,6 @@
                   <label for="targetPrice"><span class="text-danger">停利目标</span></label>
                   <input class="form-control" type="text" name="targetPrice" value="{{ old('targetPrice', $plan->targetPrice ) }}" placeholder="" required />
                 </div>
-                <div class="form-group">
-                  <label for="expectRate">期望盈亏比</label>
-                  <select class="form-control" name="expectRate" required>
-                    @foreach(config('classification.expectRates') as $expectRate)
-                      <option value="{{ $expectRate }}" {{ $plan->expectRate == $expectRate ? 'selected' : '' }}>{{ $expectRate }}</option>
-                    @endforeach
-                  </select>
-                </div>
 
                 <div class="well well-sm pull-right">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>

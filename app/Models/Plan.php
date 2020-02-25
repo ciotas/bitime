@@ -26,7 +26,7 @@ class Plan extends Model
     protected $fillable = [
         'crypto', 'symbol', 'name', 'side', 'total',
         'lever', 'period', 'type', 'keyPrice',
-        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'expectRate'
+        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker'
     ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',

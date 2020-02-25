@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="row mb-5">
-    <for class="col-lg-12 col-md-12 topic-list">
+    <div class="col-lg-12 col-md-12 topic-list">
       <nav class="navbar navbar-light">
       <ul class="nav nav-tabs mr-auto">
         <li class="nav-item">
@@ -16,9 +16,7 @@
           </li>
         @endforeach
       </ul>
-        <form class="form">
         @include('plans._sidebar', ['plan'=> $plan])
-        </form>
       </nav>
 
       <br>
@@ -27,8 +25,6 @@
         {!! $plans->appends(Request::except('page'))->render() !!}
       </div>
     </div>
-
-
   </div>
 
 @endsection
