@@ -4,8 +4,7 @@ return [
         'crypto' => '虚拟',
         'usa' => '美股',
         'hongkong' => '港股',
-        'land' => 'A股',
-        'futures' => '期货'
+        'land' => 'A股'
     ],
     'periods' => [
         '12h',

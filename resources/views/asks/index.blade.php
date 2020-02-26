@@ -7,7 +7,7 @@
     <div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">我的</a></li>
+          <li class="breadcrumb-item"><a href="#">诊股</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             诊股记录
           </li>
@@ -52,7 +52,7 @@
                 @can('own', $ask)
                   @if($ask->status == 'todo')
                     <a class="btn btn-outline-secondary btn-sm" href="{{ route('asks.edit', ['ask'=>$ask->id]) }}" >编辑</a>
-                    <form action="{{ route('asks.destroy', ['ask'=>$ask->id]) }}" method="POST"
+                    <form class="inline" action="{{ route('asks.destroy', ['ask'=>$ask->id]) }}" method="POST"
                           onsubmit="return confirm('您确定要撤销吗？');">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}

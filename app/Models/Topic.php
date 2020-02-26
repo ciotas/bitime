@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Laravel\Scout\Searchable;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Topic extends Model
 {
@@ -22,8 +23,13 @@ class Topic extends Model
         ];
     }
 
+    protected $casts = [
+        'forme' => 'boolean',
+        'top' => 'boolean'
+    ];
+
     protected $fillable = [
-        'title', 'body', 'category_id', 'excerpt', 'slug', 'top'
+        'title', 'body', 'category_id', 'excerpt', 'slug', 'top', 'forme'
     ];
 
     /**

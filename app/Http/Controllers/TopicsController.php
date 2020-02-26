@@ -64,7 +64,8 @@ class TopicsController extends Controller
 	{
 	    $tilte = $request->title;
 	    $category_id = $request->category_id;
-	    $top = $request->top;
+	    $top = isset($request->top) ? ($request->top == 'on')?1:0 :0;
+	    $forme = isset($request->forme) ? ($request->forme == 'on')?1:0 :0;
 	    $body = $request->body;
 	    $tags = $request->tags;
 
@@ -72,6 +73,7 @@ class TopicsController extends Controller
 	        'title' => $tilte,
             'category_id' => $category_id,
             'top' => $top,
+            'forme'=> $forme,
             'body' => $body
         ]); //fill 方法会将传参的键值数组填充到模型的属性中
 	    $topic->user_id = Auth::id();
@@ -97,7 +99,8 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
         $tilte = $request->title;
         $category_id = $request->category_id;
-        $top = $request->top;
+        $top = isset($request->top) ? ($request->top == 'on')?1:0 :0;
+        $forme = isset($request->forme) ? ($request->forme == 'on')?1:0 :0;
         $body = $request->body;
         $tags = $request->tags;
 
@@ -105,6 +108,7 @@ class TopicsController extends Controller
             'title' => $tilte,
             'category_id' => $category_id,
             'top' => $top,
+            'forme' => $forme,
             'body' => $body
         ]);
         $topic->tags()->sync($tags);

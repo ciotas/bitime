@@ -32,15 +32,15 @@
             </div>
             @endcan
           @else
-          <div class="card-body">
-            <form action="{{ route('users.subscribe.store') }}" method="post">
-              {{ csrf_field() }}
-              <input type="hidden" name="plan_id" value="{{ $plan->id }}">
-              <button type="submit" class="btn btn-block btn-outline-success btn-sm">
-                 订阅
-              </button>
-            </form>
-          </div>
+{{--          <div class="card-body">--}}
+{{--            <form action="{{ route('users.subscribe.store') }}" method="post">--}}
+{{--              {{ csrf_field() }}--}}
+{{--              <input type="hidden" name="plan_id" value="{{ $plan->id }}">--}}
+{{--              <button type="submit" class="btn btn-block btn-outline-success btn-sm">--}}
+{{--                 订阅--}}
+{{--              </button>--}}
+{{--            </form>--}}
+{{--          </div>--}}
           @endif
         </div>
       </div>

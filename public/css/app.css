@@ -17429,6 +17429,16 @@ body {
   display: inline;
 }
 
+.topics-show-page .card {
+  padding: 15px;
+}
+
+.topics-show-page .card h1 {
+  margin: 0.4em auto 0.6em;
+  font-size: 28px;
+  line-height: 38px;
+}
+
 /* 回复列表 */
 
 .topic-reply a {

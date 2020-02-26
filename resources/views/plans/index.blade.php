@@ -3,7 +3,7 @@
 @section('title', '我的交易计划')
 
 @section('content')
-  <div class="row mb-5">
+  <div class="row">
     <div class="col-lg-12 col-md-12">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -15,7 +15,7 @@
     <div class="col-lg-12 col-md-12 topic-list">
       <br>
       @include('plans._plan_list', ['plans' => $plans])
-      <div class="mt-5">
+      <div class="mt-3">
         {!! $plans->appends(Request::except('page'))->render() !!}
       </div>
     </div>

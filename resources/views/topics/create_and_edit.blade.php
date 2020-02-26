@@ -16,6 +16,7 @@
             @endif
           </h2>
           <hr>
+          <!-- Material checked -->
           @if($topic->id)
             <form action="{{ route('topics.update', $topic->id) }}" method="POST" accept-charset="UTF-8">
               <input type="hidden" name="_method" value="PUT">
@@ -48,14 +49,25 @@
                       @endforeach
                     </select>
                   </div>
-
                   <div class="form-group">
-                    <select class="form-control" name="top" required>
-                      <option value="" disabled>顶置</option>
-                        <option value="1" {{ $topic->top == 1 ? 'selected' : '' }}>是</option>
-                        <option value="0" {{ $topic->top == 0 ? 'selected' : '' }}>否</option>
-                    </select>
+                    @can('manage_contents')
+                    <div class="form-check form-check-inline custom-switch">
+                      <input type="checkbox" name="top" {{ isset($topic->top) ? ($topic->top?'checked':'') : '' }} class="custom-control-input" id="topset">
+                      <label class="custom-control-label" for="topset">顶置</label>
+                    </div>
+                    @endcan
+                    <div class="form-check form-check-inline custom-switch">
+                      <input type="checkbox" name="forme" {{ isset($topic->forme) ? ($topic->forme?'checked':'') : '' }} class="custom-control-input" id="forme">
+                      <label class="custom-control-label" for="forme">仅对自己可见</label>
+                    </div>
                   </div>
+{{--                  <div class="form-group ">--}}
+{{--                    <select class="form-control" name="top" required>--}}
+{{--                      <option value="" disabled>顶置</option>--}}
+{{--                        <option value="1" {{ $topic->top == 1 ? 'selected' : '' }}>是</option>--}}
+{{--                        <option value="0" {{ $topic->top == 0 ? 'selected' : '' }}>否</option>--}}
+{{--                    </select>--}}
+{{--                  </div>--}}
 
                   <div class="form-group">
                     <div id="div1" class="wangeditor-body">
@@ -67,13 +79,13 @@
 
                   <div class="well well-sm">
                     @if($topic->id)
-                    <a href="{{ route('topics.show', ['topic'=>$topic->id]) }}" class="btn btn-secondary">
-                      <i class="fas fa-chevron-left"></i> 返回</a>
+                      <a  href="{{ route('topics.show', ['topic'=>$topic->id]) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-chevron-left"></i> 返回</a>
                     @else
-                      <a href="{{ route('topics.index') }}" class="btn btn-secondary">
+                      <a href="{{ route('topics.index') }}" class="btn btn-sm btn-outline-secondary">
                         <i class="fas fa-chevron-left"></i> 返回</a>
                     @endif
-                    <button type="submit" class="btn btn-primary"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
+                    <button type="submit" class="btn btn-sm btn-outline-success"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
                   </div>
                 </form>
         </div>
