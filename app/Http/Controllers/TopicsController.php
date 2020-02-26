@@ -23,9 +23,9 @@ class TopicsController extends Controller
 	public function index(Request $request, Topic $topic, User $user, Link $link)
 	{
         $topics = $topic->withOrder($request->order)
+            ->showOwn(Auth::user())
             ->with('user', 'category', 'tags') // 预加载防止 N+1 问题
              ->paginate(20);
-//        $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
         $tags = Tag::withOrder()->get();
 		return view('topics.index', compact('topics', 'links', 'tags'));
@@ -35,7 +35,8 @@ class TopicsController extends Controller
     {
         $words = trim(request('q'));
         if ($words) {
-            $topics = $topic->search($words)->paginate(20);
+            $topics = $topic->search($words)
+                ->paginate(15);
             $links = $link->getAllCached();
             $tags = Tag::withOrder()->get();
             return view('topics.search', compact('topics', 'links', 'tags'))->with('q', $words);
@@ -75,7 +76,7 @@ class TopicsController extends Controller
             'top' => $top,
             'forme'=> $forme,
             'body' => $body
-        ]); //fill 方法会将传参的键值数组填充到模型的属性中
+        ]);
 	    $topic->user_id = Auth::id();
 	    $topic->save();
 

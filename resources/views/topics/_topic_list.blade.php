@@ -14,6 +14,9 @@
             @if($topic->top)
               <span class="badge badge-primary">顶置</span>
             @endif
+            @if($topic->forme)
+              <span class="badge badge-primary">私有</span>
+            @endif
             <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
               {{ $topic->title }}
             </a>

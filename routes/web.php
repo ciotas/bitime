@@ -54,7 +54,7 @@ Route::get('permission-denied', 'PagesController@permissionDenied')->name('permi
 
 Route::get('/users/{user_id}/plans', 'PlansController@index')->name('plans.index');
 
-Route::resource('plans', 'PlansController');
+Route::resource('plans', 'PlansController', ['except'=> ['show']]);
 Route::get('plans/search', 'PlansController@search')->name('plans.search');
 
 Route::post('users/subscribe', 'SubscribeController@store')->name('users.subscribe.store');

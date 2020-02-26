@@ -14,7 +14,7 @@
             <li class="list-group-item"><span class="text-secondary">最大盈/亏：</span>{{ $plan->maxProfit }} / -{{ $plan->maxLoss }} = {{ $plan->realRate }}</li>
             <li class="list-group-item"><span class="text-secondary">建议：</span> {{ $plan->worthToBuy }}</li>
           </ul>
-          @if(Auth::check() && $plan->UserSubscribed)
+          @if(Auth::check()) {{--  && $plan->UserSubscribed --}}
             @can('manage_trades')
             <div class="card-body">
               <form action="{{ route('plans.destroy', $plan->id) }}" method="post"

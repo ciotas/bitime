@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Laravel\Scout\Searchable;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class Topic extends Model
 {
@@ -84,6 +83,16 @@ class Topic extends Model
     {
         // 按照创建时间排序
         return $query->orderBy('top', 'desc')->orderBy('created_at', 'desc');
+    }
+
+    public function scopeShowOwn($query, $user)
+    {
+        if($user->can('manage_contents'))
+        {
+            return $query;
+        } else {
+            return $query->where('forme', 0)->orWhere([ ['user_id', $user->id], ['forme', 1]]);
+        }
     }
 
     /**
