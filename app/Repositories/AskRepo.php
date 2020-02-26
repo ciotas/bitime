@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Ask;
+use App\Models\Ask;
 use Illuminate\Database\Eloquent\Model;
 
 class AskRepo extends BaseRepository

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Ask;
+
 use App\Models\Traits\ActiveUserHelper;
 use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;

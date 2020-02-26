@@ -21,9 +21,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('categories.show', 4) }}">交易笔记</a>
-            @can('manage_trades')
-              <a class="dropdown-item" href="{{ route('plans.create') }}">发布计划</a>
-            @endcan
             <div class="dropdown-divider"></div>
             @foreach(config('classification.markets') as $market => $name)
               <a class="dropdown-item" href="{{ route('plans.index', ['market' => $market]) }}">{{ $name }}</a>
@@ -31,6 +28,18 @@
           </div>
         </li>
         @can('manage_trades')
+          <li class="nav-item dropdown {{ active_class(if_route('asks.create') || if_route('asks.index')) }}">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              工作台
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('asks.sorts.lists', ['tab'=>'todo']) }}">待处理</a>
+              <a class="dropdown-item" href="{{ route('asks.sorts.lists', ['tab'=>'doing']) }}">分析中</a>
+              <a class="dropdown-item" href="{{ route('asks.sorts.lists', ['tab'=>'done']) }}">已完成</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('plans.create') }}">发布计划</a>
+            </div>
+          </li>
         @else
         <li class="nav-item dropdown {{ active_class(if_route('asks.create') || if_route('asks.index')) }}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Ask;
+use App\Models\Ask;
 use App\Http\Requests\AskRequest;
 use App\Repositories\AskRepo;
 use Illuminate\Http\Request;
@@ -27,6 +27,18 @@ class AsksController extends Controller
         }
         $asks = $builder->paginate(15);
         return view('asks.index', ['asks'=>$asks, 'filters'=>['status'=>$status]]);
+    }
+
+    public function listAsks(Request $request)
+    {
+        $status = $request->tab;
+        if (!in_array($status, array_keys(config('classification.plan_statuses'))))
+        {
+            $status = 'todo';
+        }
+        $asks = Ask::with('user', 'analyzer')->where('status', $status)->take(365)->paginate(15);
+        return view('asks.lists', compact('asks'));
+
     }
 
     public function show(Ask $ask)

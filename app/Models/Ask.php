@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\Analyzer;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,10 @@ class Ask extends Model
     {
         $len = numberOfDecimals($total);
         return round($total, $len);
+    }
+
+    public function analyzer()
+    {
+        return $this->hasOne(Analyzer::class);
     }
 }
