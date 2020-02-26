@@ -29,6 +29,11 @@ class AsksController extends Controller
         return view('asks.index', ['asks'=>$asks, 'filters'=>['status'=>$status]]);
     }
 
+    public function show(Ask $ask)
+    {
+        return view('asks.show', compact('ask'));
+    }
+
     public function create(Ask $ask)
     {
         return view('asks.edit', compact('ask'));

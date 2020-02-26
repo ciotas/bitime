@@ -7,7 +7,7 @@
     <div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">交易</a></li>
+          <li class="breadcrumb-item"><a href="#">我的</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             诊股记录
           </li>
@@ -61,7 +61,7 @@
                   @elseif($ask->status == 'doing')
                     /
                   @elseif($ask->status == 'done')
-                    <a href="{{ route('asks.show') }}"
+                    <a href="{{ route('asks.show', ['ask'=>$ask->id]) }}"
                       class="btn btn-outline-success btn-sm" aria-label="Left Align">
                       查看
                     </a>
