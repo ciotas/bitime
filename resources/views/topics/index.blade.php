@@ -12,7 +12,7 @@
 {{--        </div>--}}
 {{--      @endif--}}
 
-      @if($category->id == 4)
+      @if(isset($category) && $category->id == 4)
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">市场</a></li>
