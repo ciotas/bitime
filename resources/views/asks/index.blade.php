@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '首页')
+@section('title', '诊股记录')
 
 @section('content')
   <div class="container-fluid col-lg-9 col-md-9">
@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">交易</a></li>
           <li class="breadcrumb-item active" aria-current="page">
-            我的诊股
+            诊股记录
           </li>
         </ol>
       </nav>
@@ -51,6 +51,7 @@
               <td>
                 @can('own', $ask)
                   @if($ask->status == 'todo')
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ route('asks.edit', ['ask'=>$ask->id]) }}" >编辑</a>
                     <form action="{{ route('asks.destroy', ['ask'=>$ask->id]) }}" method="POST"
                           onsubmit="return confirm('您确定要撤销吗？');">
                       {{ csrf_field() }}
@@ -60,11 +61,10 @@
                   @elseif($ask->status == 'doing')
                     /
                   @elseif($ask->status == 'done')
-                    <button
-                      data-toggle="modal" data-target="#ask_{{$ask->id}}"
+                    <a href="{{ route('asks.show') }}"
                       class="btn btn-outline-success btn-sm" aria-label="Left Align">
                       查看
-                    </button>
+                    </a>
                   @endif
                 @endcan
               </td>

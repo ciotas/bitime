@@ -26,11 +26,11 @@ class Ask extends Model
         switch ($this->status)
         {
             case 'todo':
-                return '<span class="badge badge-danger">待处理</span>'; break;
+                return '<span class="text-danger">待处理</span>'; break;
             case 'doing':
-                return '<span class="badge badge-warning">分析中</span>'; break;
+                return '<span class="text-warning">分析中</span>'; break;
             case 'done':
-                return '<span class="badge badge-success">已完成</span>'; break;
+                return '<span class="text-success">已完成</span>'; break;
         }
     }
 

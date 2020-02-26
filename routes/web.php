@@ -61,3 +61,4 @@ Route::post('users/subscribe', 'SubscribeController@store')->name('users.subscri
 Route::delete('users/subscribe', 'SubscribeController@destroy')->name('users.subscribe.destroy');
 
 Route::resource('asks', 'AsksController');
+Route::get('users/plans/booking', 'PlansController@book')->name('uses.plans.booking');

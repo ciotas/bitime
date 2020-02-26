@@ -34,6 +34,12 @@ class AsksController extends Controller
         return view('asks.edit', compact('ask'));
     }
 
+    public function edit(Ask $ask)
+    {
+        $this->authorize('own', $ask);
+        return view('asks.edit', compact('ask'));
+    }
+
     public function store(AskRequest $request)
     {
         $data = $request->all();

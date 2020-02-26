@@ -15,7 +15,7 @@
         <li class="nav-item {{ category_nav_active(1) }}"><a class="nav-link" href="{{ route('categories.show', 1) }}">技术</a></li>
         <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">随笔</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">人生</a></li>
-        <li class="nav-item dropdown {{ active_class(if_route('plans.index') || if_route('plans.create') || if_route('asks.create') || if_route('asks.index')) }}">
+        <li class="nav-item dropdown {{ active_class(if_route('plans.index') || if_route('plans.create') || if_route('asks.create')) }}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             交易
           </a>
@@ -26,7 +26,6 @@
             @else
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ Auth::check()?route('asks.create'):route('login') }}">我要诊股</a>
-              <a class="dropdown-item" href="{{ Auth::check()?route('asks.index'):route('login') }}">我的诊股</a>
             @endcan
 
             <div class="dropdown-divider"></div>
@@ -84,7 +83,10 @@
                 </a>
                 <div class="dropdown-divider"></div>
               @endcan
-              <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}"><i class="far fa-user mr-2"></i>个人中心</a>
+                <a class="dropdown-item" href="{{ route('uses.plans.booking') }}">我的订阅</a>
+                <a class="dropdown-item" href="{{ route('asks.index') }}">诊股记录</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}"><i class="far fa-user mr-2"></i>个人中心</a>
               <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}"><i class="far fa-edit mr-2"></i>编辑资料</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" id="logout" href="#">

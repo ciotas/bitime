@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '交易计划')
+@section('title', '我要诊股')
 
 @section('content')
   <div class="container-fluid col-lg-9 col-md-9">
