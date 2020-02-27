@@ -40,7 +40,7 @@ class PlansController extends Controller
             return view('plans.search', compact('plans'))->with('q', $words);
         } else {
             $plans = Plan::withOrder()->paginate(12);
-            return view('plans.index', compact('plans', 'plan'));
+            return redirect()->route('plans.index');
         }
     }
 
