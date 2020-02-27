@@ -18,7 +18,7 @@ class AsksController extends Controller
         $this->ask = $ask;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, Ask $ask)
     {
         $builder = Auth::user()->asks()->withOrder();
         $status = $request->status ?? 'all';
@@ -29,21 +29,26 @@ class AsksController extends Controller
         return view('asks.index', ['asks'=>$asks, 'filters'=>['status'=>$status]]);
     }
 
-    public function listAsks(Request $request)
+    public function listAsks(Request $request, Ask $ask)
     {
+        $this->authorize('manage', $ask);
         $status = $request->tab;
         if (!in_array($status, array_keys(config('classification.plan_statuses'))))
         {
             $status = 'todo';
         }
-        $asks = Ask::with('user', 'analyzer')->where('status', $status)->take(365)->paginate(15);
+        $asks = Ask::with('user', 'analyzer', 'analyzer.plan')->where('status', $status)->take(365)->paginate(15);
+//        dd($asks->toArray());
+
         return view('asks.lists', compact('asks'));
 
     }
 
     public function show(Ask $ask)
     {
-        return view('asks.show', compact('ask'));
+        $this->authorize('own', $ask);
+        $analyzer = $ask->analyzer()->with('plan')->get();
+        return view('asks.show', compact('ask', 'analyzer'));
     }
 
     public function create(Ask $ask)
@@ -55,6 +60,14 @@ class AsksController extends Controller
     {
         $this->authorize('own', $ask);
         return view('asks.edit', compact('ask'));
+    }
+
+    public function done(Ask $ask)
+    {
+        $this->authorize('manage', $ask);
+        $ask->status = 'done';
+        $ask->save();
+        return back();
     }
 
     public function store(AskRequest $request)

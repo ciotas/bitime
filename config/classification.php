@@ -31,6 +31,10 @@ return [
         '20'  => '20x',
         '25'  => '25x',
     ],
+    'plan_types' => [
+        'pdf' => '破底翻',
+        'break' => '突破'
+    ],
     'plan_statuses' => [
         'todo'  => '待处理',
         'doing' => '分析中',

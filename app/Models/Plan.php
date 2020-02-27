@@ -163,4 +163,9 @@ class Plan extends Model
     {
         return in_array(Auth::id(), $this->users->pluck('id')->toArray()) ? true : false;
     }
+
+    public function analyzer()
+    {
+        return $this->hasOne(Analyzer::class);
+    }
 }

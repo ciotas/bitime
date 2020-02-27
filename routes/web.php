@@ -65,4 +65,5 @@ Route::get('asks/sorts/lists', 'AsksController@listAsks')->name('asks.sorts.list
 Route::get('users/plans/booking', 'PlansController@book')->name('uses.plans.booking');
 
 Route::resource('analyzers', 'AnalyzersController', ['only' => ['update', 'store']]);
+Route::get('asks/{ask}/over', 'AsksController@done')->name('asks.over');
 

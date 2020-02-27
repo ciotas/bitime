@@ -48,7 +48,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('asks.create') }}">我要诊股</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('asks.index') }}">诊股记录</a>
+            <a class="dropdown-item" href="{{ route('asks.index') }}">诊股分析</a>
             <a class="dropdown-item" href="{{ route('asks.index') }}">专业回复</a>
           </div>
         </li>

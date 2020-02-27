@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AnalyzerRequest extends FormRequest
 {
@@ -24,8 +25,7 @@ class AnalyzerRequest extends FormRequest
     public function rules()
     {
         return [
-            'body'     => 'required|min:3',
-            'use_plan' => 'numeric'
+            'body'     => 'required|min:3'
         ];
     }
 }

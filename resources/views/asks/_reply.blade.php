@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<a href="#" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#ask_reply{{ $ask->id }}">
-  回复
+<a href="#" class="btn btn-outline-primary btn-sm" onclick="resetParam({{$ask->id}})" data-toggle="modal" data-target="#ask_reply{{ $ask->id }}">
+  行情分析
 </a>
 
 <!-- Modal -->
@@ -18,13 +18,13 @@
         @if($ask->analyzer && $ask->analyzer->id)
         <form action="{{ route('analyzers.update', $ask->analyzer->id) }}" method="POST" accept-charset="UTF-8">
           <input type="hidden" name="_method" value="PUT">
+          <input type="hidden" name="plan_id" value="{{ isset($ask->analyzer->plan)?$ask->analyzer->plan->id:0 }}">
           @else
             <form action="{{ route('analyzers.store') }}" method="POST" accept-charset="UTF-8">
               @endif
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <input type="hidden" name="ask_id" value="{{ $ask->id }}">
               @include('shared._error')
-
 
               <div class="form-group">
                 <div id="div{{$ask->id}}" class="wangeditor-body">
@@ -41,11 +41,14 @@
               </div>
             </div>
               <div id="showPlan{{$ask->id}}">
-              @include('plans._plan_form', ['plan'=>$ask->plan])
+              @include('plans._plan_form', ['plan'=>$ask->analyzer->plan??$ask])
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-sm btn-outline-success">完成</button>
+                @if ($ask->status == 'doing')
+                <a href="{{ route('asks.over', ['ask'=>$ask->id]) }}" class="btn btn-sm btn-outline-primary">完成</a>
+                @endif
+                  <button type="submit" class="btn btn-sm btn-outline-success">提交</button>
               </div>
           </form>
       </div>
@@ -55,27 +58,41 @@
 </div>
 @section('scripts')
 <script>
-  $(document).ready(function(){
-    var editor = new E('#div'+'{{$ask->id}}')
-    var $text1 = $('#editor'+'{{$ask->id}}')
+  var askIds=[]
+  function resetParam (askId) {
+    if ($("#use_plan"+askId).is(":checked"))
+    {
+      $('#showPlan'+askId).show()
+    } else {
+      $('#showPlan'+askId).hide()
+    }
+    if (askIds.indexOf(askId) === -1)
+    {
+      askIds.push(askId)
+    } else {
+      return
+    }
+
+    var editor = new E('#div'+askId)
+    var $text1 = $('#editor'+askId)
     editor.customConfig.onchange = function (html) {
       // 代码块
-      var doc_pre = $("#div{{$ask->id}} pre");
+      var doc_pre = $("#div"+askId+" pre")
       doc_pre.each(function(){
-        var lan_class = 'language-markup';
+        var lan_class = 'language-markup'
         if (! $(this).hasClass(lan_class))
         {
-          $(this).attr("class",lan_class);
+          $(this).attr("class",lan_class)
         }
       });
 
       // 个性化table
-      var doc_table = $("#div{{$ask->id}} table");
+      var doc_table = $("#div"+askId+" table")
       doc_table.each(function () {
         var table_class = 'table table-bordered'
         if (! $(this).hasClass(table_class))
         {
-          $(this).attr("class",table_class);
+          $(this).attr("class",table_class)
         }
       });
 
@@ -121,15 +138,15 @@
     // 初始化 textarea 的值
     $text1.val(editor.txt.html())
 
-    $('#showPlan'+'{{$ask->id}}').hide()
-    $("#use_plan"+'{{$ask->id}}').click(function () {
+    $("#use_plan"+askId).click(function () {
       if($("input:checkbox:checked").val() === 'on')
       {
-        $('#showPlan'+'{{$ask->id}}').show()
+        $('#showPlan'+askId).show()
       } else {
-        $('#showPlan'+'{{$ask->id}}').hide()
+        $('#showPlan'+askId).hide()
       }
     })
-  });
+  }
+
 </script>
 @endsection

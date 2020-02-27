@@ -48,7 +48,7 @@
               @endif
             </td>
             <td>
-              @include('asks._reply', [ 'ask'=> $ask ])
+              @include('asks._reply', [ 'ask'=>$ask ])
             </td>
           </tr>
           @endforeach

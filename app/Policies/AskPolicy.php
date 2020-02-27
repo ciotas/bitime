@@ -14,4 +14,9 @@ class AskPolicy
     {
         return $user->id === $ask->user_id;
     }
+
+    public function manage(User $user, Ask $ask)
+    {
+        return $user->can('manage_trades');
+    }
 }
