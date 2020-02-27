@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,14 +25,16 @@ class createTradeRole extends Command
      */
     protected $description = '为交易计划创建角色';
 
+    protected $user;
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         parent::__construct();
+        $this->user = $user;
     }
 
     /**
@@ -49,5 +53,13 @@ class createTradeRole extends Command
         $role = Role::findByName('Maintainer');
         $role->givePermissionTo('manage_trades');
 
+        // 新增一个测试普通用户账户
+        $this->user->name = 'manager';
+        $this->user->email = 'linzikristy@outlook.com';
+        $this->user->email_verified_at = Carbon::now()->toDateTimeString();
+        $this->user->password = bcrypt('a761177953z');
+        $this->user->avatar = 'https://cdn.learnku.com/uploads/images/201710/14/1/s5ehp11z6s.png';
+        $this->user->save();
+        $this->user->assignRole('Maintainer');
     }
 }
