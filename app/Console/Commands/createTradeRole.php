@@ -16,7 +16,7 @@ class createTradeRole extends Command
      *
      * @var string
      */
-    protected $signature = 'create:role';
+    protected $signature = 'create:user';
 
     /**
      * The console command description.
