@@ -37,7 +37,9 @@ class AsksController extends Controller
         {
             $status = 'todo';
         }
-        $asks = Ask::with('user', 'analyzer', 'analyzer.plan')->where('status', $status)->take(365)->paginate(15);
+        $asks = Ask::with('user', 'analyzer', 'analyzer.plan')
+            ->where('status', $status)->take(365)
+            ->paginate(15);
         return view('asks.lists', compact('asks'));
     }
 

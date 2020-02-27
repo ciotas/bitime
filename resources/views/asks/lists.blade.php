@@ -57,6 +57,9 @@
           @endforeach
           </tbody>
         </table>
+          <div class="mt-3">
+            {!! $asks->appends(Request::except('page'))->render() !!}
+          </div>
           @else
           暂无数据
         @endif

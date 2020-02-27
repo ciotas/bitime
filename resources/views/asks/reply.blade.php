@@ -15,20 +15,23 @@
       </nav>
     </div>
     @if ($asks->count() > 0)
-    @foreach($asks as $ask)
-    <div class="card mb-2">
-      <div class="card-body">
-        <h6 class="card-title">
-          <a class="text-muted" href="{{ route('asks.show', ['ask' => $ask->id]) }}">关于<span style="color: #f66d9b">{{ $ask->name }}({{$ask->symbol}})</span>的行情分析与操作建议</a>
-        </h6>
-        <p class="card-text">
-          <small class="text-muted">于{{ $ask->created_at->format('m/d/Y') }}提交</small>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <small class="text-muted">{{ $ask->updated_at->diffForHumans() }}回复更新</small>
-        </p>
+      @foreach($asks as $ask)
+      <div class="card mb-2">
+        <div class="card-body">
+          <h6 class="card-title">
+            <a class="text-muted" href="{{ route('asks.show', ['ask' => $ask->id]) }}">关于<span style="color: #f66d9b">{{ $ask->name }}({{$ask->symbol}})</span>的行情分析与操作建议</a>
+          </h6>
+          <p class="card-text">
+            <small class="text-muted">于{{ $ask->created_at->format('m/d/Y') }}提交</small>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <small class="text-muted">{{ $ask->updated_at->diffForHumans() }}回复更新</small>
+          </p>
+        </div>
       </div>
-    </div>
-    @endforeach
+      @endforeach
+      <div class="mt-3">
+        {!! $asks->appends(Request::except('page'))->render() !!}
+      </div>
       @else
       <div class="card mb-2">
         <div class="card-body">
