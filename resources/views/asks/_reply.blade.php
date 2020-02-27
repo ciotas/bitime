@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<a href="#" class="btn btn-outline-primary btn-sm" onclick="resetParam({{$ask->id}})" data-toggle="modal" data-target="#ask_reply{{ $ask->id }}">
-  行情分析
+<a href="#" class="btn btn-outline-success btn-sm" onclick="resetParam({{$ask->id}})" data-toggle="modal" data-target="#ask_reply{{ $ask->id }}">
+  分析报告
 </a>
 
 <!-- Modal -->
@@ -8,8 +8,8 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><span class="text-muted">分析</span>{{ $ask->name }}/{{ $ask->symbol }}
-          ({{ config('classification.markets')[$ask->market] }})<span class="text-muted">在</span>{{ $ask->period }}<span class="text-muted">的行情</span></h5>
+        <h5 class="modal-title"><span class="text-muted"></span><code>{{ $ask->name }}/{{ $ask->symbol }}
+          ({{ config('classification.markets')[$ask->market] }})</code><span class="text-muted">在</span><code>{{ $ask->period }}</code> <span class="text-muted">的行情分析</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -36,8 +36,9 @@
 
             <div class="form-group">
               <div class="form-check form-check-inline custom-switch">
-                <input type="checkbox" name="use_plan" {{ $ask->analyzer ? ($ask->analyzer->use_plan ?'checked':'') : '' }} class="custom-control-input" id="use_plan{{$ask->id}}">
-                <label class="custom-control-label" for="use_plan{{$ask->id}}">设置计划</label>
+                <input type="checkbox" name="use_plan" {{ $ask->analyzer ? ($ask->analyzer->use_plan ?'checked':'') : '' }}
+                 class="custom-control-input" id="use_plan{{$ask->id}}">
+                <label class="custom-control-label" for="use_plan{{$ask->id}}">设置交易计划</label>
               </div>
             </div>
               <div id="showPlan{{$ask->id}}">

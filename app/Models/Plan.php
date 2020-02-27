@@ -58,6 +58,11 @@ class Plan extends Model
         return $query->orderBy('updated_at', 'desc');
     }
 
+    public function scopeWithStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
     public function getAvailableMoneyAttribute()
     {
         return round(($this->total * $this->lever) / 4);

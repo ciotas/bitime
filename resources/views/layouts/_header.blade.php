@@ -41,15 +41,15 @@
             </div>
           </li>
         @else
-        <li class="nav-item dropdown {{ active_class(if_route('asks.create') || if_route('asks.index')) }}">
+        <li class="nav-item dropdown {{ active_class(if_route('asks.create') || if_route('asks.index')||if_route('asks.replies')||if_route('asks.show') ) }}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             诊股
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('asks.create') }}">我要诊股</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('asks.index') }}">诊股分析</a>
-            <a class="dropdown-item" href="{{ route('asks.index') }}">专业回复</a>
+            <a class="dropdown-item" href="{{ route('asks.index') }}">诊股记录</a>
+            <a class="dropdown-item" href="{{ route('asks.replies') }}">分析报告</a>
           </div>
         </li>
         @endcan
@@ -108,7 +108,7 @@
               <a class="dropdown-item" id="logout" href="#">
                 <form action="{{ route('logout') }}" method="POST">
                   {{ csrf_field() }}
-                  <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
+                  <button class="btn btn-block btn-danger btn-sm" type="submit" name="button">退出</button>
                 </form>
               </a>
             </div>

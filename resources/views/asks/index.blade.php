@@ -51,11 +51,11 @@
               <td>
                 @can('own', $ask)
                   @if($ask->status == 'todo')
-                    <a class="btn btn-outline-secondary btn-sm" href="{{ route('asks.edit', ['ask'=>$ask->id]) }}" >编辑</a>
                     <form class="inline" action="{{ route('asks.destroy', ['ask'=>$ask->id]) }}" method="POST"
                           onsubmit="return confirm('您确定要撤销吗？');">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
+                      <a class="btn btn-outline-secondary btn-sm" href="{{ route('asks.edit', ['ask'=>$ask->id]) }}" >编辑</a>
                       <button class="btn btn-outline-danger btn-sm" type="submit" name="button">撤销</button>
                     </form>
                   @elseif($ask->status == 'doing')
@@ -63,7 +63,7 @@
                   @elseif($ask->status == 'done')
                     <a href="{{ route('asks.show', ['ask'=>$ask->id]) }}"
                       class="btn btn-outline-success btn-sm" aria-label="Left Align">
-                      查看
+                      查看分析报告
                     </a>
                   @endif
                 @endcan

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', '待处理诊股')
+@section('title',
+    request('tab') == 'todo'?'待处理':(request('tab') == 'doing'?'分析中':'已完成').'诊股'
+)
 
 @section('content')
   <div class="container-fluid col-lg-12 col-md-12">
@@ -9,7 +11,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">工作台</a></li>
           <li class="breadcrumb-item active" aria-current="page">
-            待处理
+            {{request('tab') == 'todo'?'待处理':(request('tab') == 'doing'?'分析中':'已完成')}}
           </li>
         </ol>
       </nav>

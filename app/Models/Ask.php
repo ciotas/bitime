@@ -29,7 +29,7 @@ class Ask extends Model
             case 'todo':
                 return '<span class="text-danger">待处理</span>'; break;
             case 'doing':
-                return '<span class="text-warning">分析中</span>'; break;
+                return '<span class="text-primary">分析中</span>'; break;
             case 'done':
                 return '<span class="text-success">已完成</span>'; break;
         }

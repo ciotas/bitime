@@ -3,7 +3,12 @@
     @foreach ($plans as $plan)
       <div class="col mb-3">
         <div class="card">
-          <h6 class="card-header">{{$plan->name ? $plan->name .'/ '. $plan->symbol : $plan->symbol }}</h6>
+          <h6 class="card-header">
+            @if($plan->status == 'self')
+            <i class="fas fa-lock"></i>
+            @endif
+            {{$plan->name ? $plan->name .'/ '. $plan->symbol : $plan->symbol }}
+          </h6>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><span class="text-secondary">方向：</span>{!! ($plan->type == 'pdf'?'破底翻':'突破').'，'.($plan->side == 'buy'?'<span class="text-success">做多</span>':'<span class="text-danger">做空</span>') !!}</li>
             <li class="list-group-item"><span class="text-secondary">可{{ $plan->side == 'buy'?'买':'卖' }}数量：</span>{{ $plan->availableShares }}</li>

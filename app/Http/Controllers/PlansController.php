@@ -22,11 +22,11 @@ class PlansController extends Controller
         {
             return redirect()->route('plans.index', ['market'=>'crypto']);
         }
-        if($request->market)
-        {
+
+        if (Auth::check() && Auth::user()->can('manage_trades')) {
             $plans = Plan::where('market', $request->market)->withOrder()->paginate(12);
         } else {
-            $plans = Plan::withOrder()->paginate(12);
+            $plans = Plan::where('market', $request->market)->withStatus('public')->withOrder()->paginate(12);
         }
         return view('plans.index', compact('plans', 'plan'));
     }

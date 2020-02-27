@@ -44,6 +44,12 @@ class AsksController extends Controller
 
     }
 
+    public function replies()
+    {
+        $asks = Ask::where('user_id', Auth::id())->whereIn('status', 'done')->paginate(15);
+        return view('asks.reply', compact('asks'));
+    }
+
     public function show(Ask $ask)
     {
         $this->authorize('own', $ask);

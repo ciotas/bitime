@@ -48,7 +48,7 @@
 <div class="form-group">
   <label for="type"><span class="text-danger">标准图</span></label>
   <select class="form-control" name="type">
-    <option value="pdf" {{ isset($plan->type)? ($plan->type == 'pdf' ? 'selected' : ''):'' }}>破底翻</option>
+    <option value="pdf" {{ isset($plan->type)? ($plan->type == 'pdf' ? 'selected' : ''):'selected' }}>破底翻</option>
     <option value="break" {{ isset($plan->type)? ($plan->type == 'break' ? 'selected' : ''):'' }}>突破</option>
   </select>
 </div>
@@ -69,3 +69,12 @@
   <label for="targetPrice"><span class="text-danger">停利目标</span></label>
   <input class="form-control" type="text" name="targetPrice" value="{{ old('targetPrice', $plan->targetPrice??'' ) }}" placeholder="" />
 </div>
+@can('manage_trades')
+<div class="form-group">
+  <label for="status"><span class="text-danger">标记</span></label>
+  <select class="form-control" name="status">
+    <option value="self" {{ isset($plan->status)?($plan->status == 'self' ? 'selected' : ''): 'selected' }}>私有</option>
+    <option value="public" {{ isset($plan->status)?($plan->status == 'public' ? 'selected' : ''): '' }}>开放</option>
+  </select>
+</div>
+@endcan
