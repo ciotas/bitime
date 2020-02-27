@@ -87,11 +87,15 @@ class Topic extends Model
 
     public function scopeShowOwn($query, $user)
     {
-        if($user->can('manage_contents'))
-        {
-            return $query;
+        if ($user) {
+            if($user->can('manage_contents'))
+            {
+                return $query;
+            } else {
+                return $query->where('forme', 0)->orWhere([ ['user_id', $user->id], ['forme', 1]]);
+            }
         } else {
-            return $query->where('forme', 0)->orWhere([ ['user_id', $user->id], ['forme', 1]]);
+            return $query->where('forme', 0);
         }
     }
 
