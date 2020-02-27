@@ -43,7 +43,8 @@ class AnalyzersController extends Controller
                     'lowestPrice' => $request->lowestPrice,
                     'breakevenPrice' => $request->breakevenPrice,
                     'targetPrice' => $request->targetPrice,
-                    'status' => $request->status
+                    'status' => $request->status,
+                    'tag' => $request->tag,
                 ])->id;
             }
 
@@ -89,7 +90,8 @@ class AnalyzersController extends Controller
                     'lowestPrice' => $request->lowestPrice,
                     'breakevenPrice' => $request->breakevenPrice,
                     'targetPrice' => $request->targetPrice,
-                    'status' => $request->status
+                    'status' => $request->status,
+                    'tag' => $request->tag,
                 ];
                 if ($plan_id > 0) {
                     $plan->where('id', $plan_id)->update($plan_params);

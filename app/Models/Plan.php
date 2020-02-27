@@ -26,7 +26,7 @@ class Plan extends Model
     protected $fillable = [
         'market', 'symbol', 'name', 'side', 'total',
         'lever', 'period', 'type', 'keyPrice',
-        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'status'
+        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'status','tag'
     ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',
@@ -63,6 +63,10 @@ class Plan extends Model
         return $query->where('status', $status);
     }
 
+    public function scopeWithTag($query, $tag)
+    {
+        return $query->where('tag', $tag);
+    }
     public function getAvailableMoneyAttribute()
     {
         return round(($this->total * $this->lever) / 4);

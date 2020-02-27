@@ -33,7 +33,7 @@
                 @if($plan->id)
                 <a href="{{ route('plans.index', ['market' => $plan->market]) }}" class="btn btn-sm btn-outline-secondary">返回</a>
                 @endif
-                <button type="submit" class="btn btn-sm btn-outline-primary"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
+                <button type="submit" class="btn btn-sm btn-outline-success"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
               </div>
             </form>
     </div>

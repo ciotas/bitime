@@ -27,7 +27,7 @@ class PlansController extends Controller
         if (Auth::check() && Auth::user()->can('manage_trades')) {
             $plans = Plan::where('market', $request->market)->withOrder()->paginate(12);
         } else {
-            $plans = Plan::where('market', $request->market)->withStatus('public')->withOrder()->paginate(12);
+            $plans = Plan::where('market', $request->market)->withTag('official')->withStatus('online')->withOrder()->paginate(12);
         }
         return view('plans.index', compact('plans', 'plan'));
     }

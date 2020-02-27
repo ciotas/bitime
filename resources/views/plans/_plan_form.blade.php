@@ -71,10 +71,17 @@
 </div>
 @can('manage_trades')
 <div class="form-group">
-  <label for="status"><span class="text-danger">标记</span></label>
+  <label for="status"><span class="text-muted">上线/下线</span></label>
   <select class="form-control" name="status">
-    <option value="self" {{ isset($plan->status)?($plan->status == 'self' ? 'selected' : ''): 'selected' }}>私有</option>
-    <option value="public" {{ isset($plan->status)?($plan->status == 'public' ? 'selected' : ''): '' }}>开放</option>
+    <option value="online" {{ isset($plan->status)?($plan->status == 'online' ? 'selected' : ''): 'selected' }}>上线</option>
+    <option value="offline" {{ isset($plan->status)?($plan->status == 'offline' ? 'selected' : ''): '' }}>下线</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="status"><span class="text-muted">官方/私有</span></label>
+  <select class="form-control" name="tag">
+    <option value="official" {{ isset($plan->tag)?($plan->tag == 'official' ? 'selected' : ''): 'selected' }}>官方</option>
+    <option value="private" {{ isset($plan->tag)?($plan->tag == 'private' ? 'selected' : ''): '' }}>私有</option>
   </select>
 </div>
 @endcan

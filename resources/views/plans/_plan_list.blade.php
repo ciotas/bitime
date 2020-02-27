@@ -4,7 +4,7 @@
       <div class="col mb-3">
         <div class="card">
           <h6 class="card-header">
-            @if($plan->status == 'self')
+            @if($plan->tag == 'private')
             <i class="fas fa-lock"></i>
             @endif
             {{$plan->name ? $plan->name .'/ '. $plan->symbol : $plan->symbol }}
@@ -22,6 +22,7 @@
           @if(Auth::check()) {{--  && $plan->UserSubscribed --}}
             @can('manage_trades')
             <div class="card-body">
+              @if($plan->tag == 'official')
               <form action="{{ route('plans.destroy', $plan->id) }}" method="post"
                     style="display: inline-block;"
                     onsubmit="return confirm('您确定要删除吗？');">
@@ -31,6 +32,7 @@
                   <i class="far fa-trash-alt"></i> 删除
                 </button>
               </form>
+              @endif
               <a href="{{ route('plans.edit', ['plan'=>$plan->id]) }}" class="btn btn-outline-secondary btn-sm" >
                 重新计算
               </a>
