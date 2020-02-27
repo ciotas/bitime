@@ -45,7 +45,7 @@ class createTradeRole extends Command
     public function handle()
     {
         app(PermissionRegistrar::class)->forgetCachedPermissions();
-//        Permission::create(['name' => 'manage_trades']);
+        Permission::create(['name' => 'manage_trades']);
 
         $role = Role::findByName('Founder');
         $role->givePermissionTo('manage_trades');
