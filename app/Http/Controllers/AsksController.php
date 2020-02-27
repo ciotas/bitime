@@ -46,7 +46,7 @@ class AsksController extends Controller
 
     public function replies()
     {
-        $asks = Ask::where('user_id', Auth::id())->whereIn('status', 'done')->paginate(15);
+        $asks = Ask::where('user_id', Auth::id())->where('status', 'done')->paginate(15);
         return view('asks.reply', compact('asks'));
     }
 
