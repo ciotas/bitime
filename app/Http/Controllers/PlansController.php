@@ -14,6 +14,7 @@ class PlansController extends Controller
     public function __construct()
     {
 //        $this->binance = app('binance');
+        $this->middleware('auth', ['except'=>['index', 'search']]);
     }
 
     public function index(Request $request, Plan $plan)
@@ -72,7 +73,7 @@ class PlansController extends Controller
 
     public function destroy(Plan $plan)
     {
-        $this->authorize('own', $plan);
+        $this->authorize('manage', $plan);
         $plan->delete();
         return redirect()->route('plans.index')->with('message', '交易计划删除成功！');
     }
