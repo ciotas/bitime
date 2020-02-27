@@ -51,6 +51,12 @@
       </div>
     @endforeach
 @else
-  <div class="empty-block">暂无数据 ~_~ </div>
+    <div class="container-fluid col-lg-12 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          暂无数据
+        </div>
+      </div>
+    </div>
 @endif
 </div>

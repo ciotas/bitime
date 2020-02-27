@@ -18,6 +18,7 @@
     </div>
     <div class="card">
       <div class="card-body">
+        @if($asks->count() > 0)
         <table class="table table-striped">
           <thead>
           <tr>
@@ -56,6 +57,9 @@
           @endforeach
           </tbody>
         </table>
+          @else
+          暂无数据
+        @endif
       </div>
     </div>
   </div>

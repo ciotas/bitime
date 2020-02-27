@@ -16,7 +16,7 @@
     </div>
     <div class="card">
       <h6 class="card-header">
-        {{$ask->name}}/{{$ask->symbol}}的行情分析
+        <code>{{$ask->name}}/{{$ask->symbol}}</code>的行情分析
       </h6>
       <div class="card-body topic-body">
 {{--        这里采用后台赋值 start --}}
