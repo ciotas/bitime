@@ -39,7 +39,6 @@ class PlansController extends Controller
             $plans = $plan->search($words)->paginate(12);
             return view('plans.search', compact('plans'))->with('q', $words);
         } else {
-            $plans = Plan::withOrder()->paginate(12);
             return redirect()->route('plans.index');
         }
     }
@@ -65,7 +64,6 @@ class PlansController extends Controller
     public function store(PlansRequest $request, Plan $plan)
     {
         $plan = $plan->fill($request->all());
-        $plan->user_id = Auth::id();
         $plan->save();
         return redirect()->route('plans.index', [ 'market' => $plan->market ])->with('success', $plan->name.'的交易计划发布成功！');
     }
