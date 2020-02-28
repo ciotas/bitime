@@ -17,7 +17,7 @@
             <li class="list-group-item"><span class="text-secondary">拉不赔目标：</span>{{ $plan->breakevenPrice }}</li>
             <li class="list-group-item"><span class="text-secondary">停利目标：</span>{{ $plan->targetPrice }}</li>
             <li class="list-group-item"><span class="text-secondary">最大盈/亏：</span>{{ $plan->maxProfit }} / -{{ $plan->maxLoss }} = {{ $plan->realRate }}</li>
-            <li class="list-group-item"><span class="text-secondary">建议：</span> {{ $plan->worthToBuy }}</li>
+            <li class="list-group-item"><span class="text-secondary">创建时间：</span> {{ $plan->created_at->diffForhumans() }}</li>
           </ul>
           @if(Auth::check()) {{--  && $plan->UserSubscribed --}}
             @can('manage_trades')
