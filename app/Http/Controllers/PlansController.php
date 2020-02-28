@@ -57,7 +57,6 @@ class PlansController extends Controller
     public function update(PlansRequest $request, Plan $plan)
     {
         $data = $request->all();
-        $data['user_id'] = Auth::id();
         $data['market'] = $request->market ?? 'crypto';
         $plan->update($data);
         return redirect()->route('plans.index', ['market' => $request->market])->with('success', '修改'.$plan->symbol.'的交易计划成功！！');
