@@ -2,11 +2,8 @@
 
 namespace App\Observers;
 
-use App\Handlers\SlugTranslateHandler;
 use App\Jobs\TranslateSlug;
-use App\Models\Tag;
 use App\Models\Topic;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 // creating, created, updating, updated, saving,

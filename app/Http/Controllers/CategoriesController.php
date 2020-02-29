@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -18,6 +19,7 @@ class CategoriesController extends Controller
     public function show(Category $category, Request $request, Topic $topic, User $user, Link $link)
     {
         $topics = $topic
+            ->showOwn(Auth::user())
             ->withOrder($request->order)
             ->where('category_id', $category->id)
             ->with('user', 'category', 'tags')

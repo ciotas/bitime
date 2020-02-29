@@ -80,7 +80,7 @@ class Plan extends Model
     public function getMaxStopLossDisAttribute()
     {
         $len = numberOfDecimals($this->ticker);
-        return round($this->keyPrice * 0.015, $len);
+        return round($this->keyPrice * env('STOP_LOSS_PA', 0.015), $len);
     }
 
     public function getStopLossPriceAttribute()
