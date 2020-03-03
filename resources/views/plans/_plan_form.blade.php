@@ -10,8 +10,8 @@
 <div class="form-group">
   <label for="symbol"><span class="text-muted">Symbol</span></label>
   <select class="form-control" name="symbol">
-    @foreach(config('classification.crypto_tickers') as $market => $ticker)
-      <option value="{{ $market }}" {{ isset($plan->market) ? ($plan->market == $market ? 'selected' : '') : ''}}>{{ $market }}</option>
+    @foreach(config('classification.crypto_tickers') as $symbol => $ticker)
+      <option value="{{ $symbol }}" {{ isset($plan->symbol) ? ($plan->symbol == $symbol ? 'selected' : '') : ''}}>{{ $symbol }}</option>
     @endforeach
   </select>
 </div>
