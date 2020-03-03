@@ -57,4 +57,3 @@ function numberOfDecimals($val = 0.00000001){
     $parts[1] = rtrim($parts[1], "0");
     return strlen($parts[1]);
 }
-

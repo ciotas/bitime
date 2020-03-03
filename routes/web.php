@@ -67,4 +67,5 @@ Route::get('users/plans/booking', 'PlansController@book')->name('uses.plans.book
 
 Route::resource('analyzers', 'AnalyzersController', ['only' => ['update', 'store']]);
 Route::get('asks/{ask}/over', 'AsksController@done')->name('asks.over');
+Route::get('users/income/analysis', 'UsersController@analysis')->name('users.income.analysis');
 

@@ -6,13 +6,24 @@
     @endforeach
   </select>
 </div>
+@if(!$plan->market || $plan->market == 'crypto')
 <div class="form-group">
   <label for="symbol"><span class="text-muted">Symbol</span></label>
-  <input class="form-control" type="text" name="symbol" value="{{ old('symbol', $plan->symbol??'' ) }}" placeholder="" />
+  <select class="form-control" name="symbol">
+    @foreach(config('classification.crypto_tickers') as $market => $ticker)
+      <option value="{{ $market }}" {{ isset($plan->market) ? ($plan->market == $market ? 'selected' : '') : ''}}>{{ $market }}</option>
+    @endforeach
+  </select>
 </div>
+@else
+  <div class="form-group">
+    <label for="symbol"><span class="text-muted">Symbol</span></label>
+    <input class="form-control" type="text" name="symbol" value="{{ old('symbol', $plan->symbol??'' ) }}" placeholder="" />
+  </div>
+@endif
 <div class="form-group">
   <label for="name"><span class="text-muted">名称</span></label>
-  <input class="form-control" type="text" name="name" value="{{ old('name', $plan->name??'' ) }}" placeholder="可选" />
+  <input class="form-control" type="text" name="name" value="{{ old('name', $plan->name??'' ) }}" placeholder="" />
 </div>
 <div class="form-group">
   <label for="period"><span class="text-muted">周期</span></label>
@@ -33,10 +44,6 @@
       <option value="{{ $lever }}" {{ isset($plan->lever)?($plan->lever == $lever ? 'selected' : ''):'' }}>{{ $name }}</option>
     @endforeach
   </select>
-</div>
-<div class="form-group">
-  <label for="ticker"><span class="text-muted">Ticker</span></label>
-  <input class="form-control" type="text" name="ticker" value="{{ old('ticker', $plan->ticker??'' ) }}" placeholder=""  />
 </div>
 <div class="form-group">
   <label for="side"><span class="text-danger">方向</span></label>

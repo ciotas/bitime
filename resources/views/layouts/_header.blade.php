@@ -50,6 +50,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('asks.index') }}">诊股记录</a>
             <a class="dropdown-item" href="{{ route('asks.replies') }}">分析报告</a>
+{{--            <a class="dropdown-item" href="{{ route('users.income.analysis') }}">我的收益</a>--}}
           </div>
         </li>
         @endcan

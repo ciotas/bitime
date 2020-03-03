@@ -26,11 +26,11 @@ class Plan extends Model
     protected $fillable = [
         'market', 'symbol', 'name', 'side', 'total',
         'lever', 'period', 'type', 'keyPrice',
-        'lowestPrice', 'targetPrice', 'breakevenPrice', 'ticker', 'status','tag'
+        'lowestPrice', 'targetPrice', 'breakevenPrice', 'status','tag'
     ];
 
     protected $appends = ['availableMoney', 'availableShares', 'maxStopLossDis',
-        'stopLossPrice', 'shouldBuyPrice', 'worthToBuy',
+        'stopLossPrice', 'shouldBuyPrice', 'worthToBuy', 'ticker',
         'userSubscribed', 'maxLoss', 'maxProfit', 'realRate'];
 
     const EXPECT_STATUS_STRONG_NO_SUGGEST = 'strong_no_suggest'; // <=1
@@ -140,12 +140,6 @@ class Plan extends Model
         return $total ? round($total) : '';
     }
 
-    public function getTickerAttribute($ticker)
-    {
-        $len = numberOfDecimals($ticker);
-        return $ticker ? round($ticker, $len) : '';
-    }
-
     public function getKeyPriceAttribute($keyPrice)
     {
         $len = numberOfDecimals($keyPrice);
@@ -176,5 +170,61 @@ class Plan extends Model
     public function analyzer()
     {
         return $this->hasOne(Analyzer::class);
+    }
+
+    protected function getTickerAttribute()
+    {
+        $ticker = 0.01;
+        switch ($this->market)
+        {
+            case 'crypto':
+                $symbol = strtoupper($this->symbol).'USDT';
+                $ticker = config('classification.crypto_tickers')[$symbol] ?? 0.01;
+                break;
+            case 'hongkong':
+                $ticker = $this->hongkongMinTicker($this->keyPrice);
+                break;
+            default:
+                $ticker = 0.01;
+        }
+        return $ticker;
+    }
+
+    protected function hongkongMinTicker($val)
+    {
+        if ($val >= 0.01 && $val < 0.25)
+        {
+            return 0.001;
+        } elseif ($val >= 0.25 && $val < 0.5)
+        {
+            return 0.005;
+        } elseif ($val >= 0.5 && $val < 10)
+        {
+            return 0.01;
+        } elseif ($val >= 10 && $val < 20)
+        {
+            return 0.02;
+        } elseif ($val >= 20 && $val < 100)
+        {
+            return 0.05;
+        } elseif ($val >= 100 && $val < 200)
+        {
+            return 0.1;
+        } elseif ($val >= 200 && $val < 500)
+        {
+            return 0.2;
+        } elseif ($val >= 500 && $val < 1000)
+        {
+            return 0.5;
+        } elseif ($val >= 1000 && $val < 2000)
+        {
+            return 1;
+        } elseif ($val >= 2000 && $val < 5000)
+        {
+            return 2;
+        } elseif ($val >= 5000 && $val < 9995)
+        {
+            return 5;
+        }
     }
 }

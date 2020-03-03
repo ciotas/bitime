@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    protected $binance;
     /**
      * UsersController constructor.
      */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
+//        $this->binance = app('binance');
     }
 
     /**
@@ -55,5 +57,10 @@ class UsersController extends Controller
         }
         $user->update($data);
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
+    }
+
+    public function analysis()
+    {
+
     }
 }

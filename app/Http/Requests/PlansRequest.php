@@ -33,8 +33,7 @@ class PlansRequest extends FormRequest
             'keyPrice' => 'required',
             'lowestPrice' => 'required',
             'targetPrice' => 'required',
-            'breakevenPrice' => 'required',
-            'ticker' => 'required'
+            'breakevenPrice' => 'required'
         ];
     }
 }
