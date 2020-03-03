@@ -178,8 +178,7 @@ class Plan extends Model
         switch ($this->market)
         {
             case 'crypto':
-                $symbol = strtoupper($this->symbol).'USDT';
-                $ticker = config('classification.crypto_tickers')[$symbol] ?? 0.01;
+                $ticker = config('classification.crypto_tickers')[$this->symbol] ?? 0.01;
                 break;
             case 'hongkong':
                 $ticker = $this->hongkongMinTicker($this->keyPrice);
