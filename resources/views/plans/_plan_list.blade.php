@@ -7,6 +7,9 @@
             @if($plan->tag == 'private')
             <i class="fas fa-lock"></i>
             @endif
+            @if($plan->status == 'offline')
+                <i class="fas fa-bell-slash"></i>
+            @endif
             {{$plan->name ? $plan->name .'/ '. $plan->symbol : $plan->symbol }}
           </h6>
           <ul class="list-group list-group-flush">
