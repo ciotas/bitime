@@ -6,21 +6,18 @@
     @endforeach
   </select>
 </div>
-{{--@if(!$plan->market || $plan->market == 'crypto')--}}
-<div class="form-group" id="crypto_symbol">
+
+<div class="form-group">
   <label for="symbol"><span class="text-muted">Symbol</span></label>
-  <select class="form-control" name="symbol">
-    @foreach(config('classification.crypto_tickers') as $symbol => $ticker)
-      <option value="{{ $symbol }}" {{ isset($plan->symbol) ? ($plan->symbol == $symbol ? 'selected' : '') : ''}}>{{ $symbol }}</option>
-    @endforeach
-  </select>
+{{--  @if(!$plan->market || $plan->market == 'crypto')--}}
+{{--  <select class="form-control" name="symbol">--}}
+{{--      @foreach(config('classification.crypto_tickers') as $symbol => $ticker)--}}
+{{--        <option value="{{ $symbol }}" {{ isset($plan->symbol) ? ($plan->symbol == $symbol ? 'selected' : '') : ''}}>{{ $symbol }}</option>--}}
+{{--      @endforeach--}}
+{{--  </select>--}}
+  <input class="form-control" type="text" name="symbol" value="{{ old('symbol', $plan->symbol??'' ) }}" placeholder="" />
 </div>
-{{--@else--}}
-  <div class="form-group" id="other_symbol">
-    <label for="symbol"><span class="text-muted">Symbol</span></label>
-    <input class="form-control" type="text" name="symbol" value="{{ old('symbol', $plan->symbol??'' ) }}" placeholder="" />
-  </div>
-{{--@endif--}}
+
 <div class="form-group">
   <label for="name"><span class="text-muted">名称</span></label>
   <input class="form-control" type="text" name="name" value="{{ old('name', $plan->name??'' ) }}" placeholder="" />
@@ -92,30 +89,11 @@
   </select>
 </div>
 @endcan
+
 @section('scripts')
-  <script>
-    $(document).ready(function () {
-      var market = "{{ $plan->market ?? '' }}"
-      if (market !== 'crypto' && market)
-      {
-        $('#crypto_symbol').hide();
-        $('#other_symbol').show();
-      } else {
-        $('#crypto_symbol').show();
-        $('#other_symbol').hide();
-      }
-      $('.search-form select[name=market]').on('change', function()
-      {
-        market = $('.search-form select[name=market]').val()
-        if (market === 'crypto')
-        {
-          $('#crypto_symbol').show();
-          $('#other_symbol').hide();
-        } else {
-          $('#crypto_symbol').hide();
-          $('#other_symbol').show();
-        }
-      });
-    })
+  <script !src="">
+    $('.search-form select[name=market]').on('change', function() {
+
+    });
   </script>
 @endsection
